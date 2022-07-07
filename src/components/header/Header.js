@@ -4,6 +4,8 @@ import MovieIcon from '@material-ui/icons/Movie';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import styles from "./styles/headerStyles";
 import PropTypes from "prop-types";
+import PersonIcon from '@material-ui/icons/Person';
+
 
 const Header = ({onLogout, isAuthenticated}) => {
     const classes = styles();
@@ -12,6 +14,7 @@ const Header = ({onLogout, isAuthenticated}) => {
         if (isAuthenticated) {
             return (
                 <div onClick={onLogout} className={classes.logoutLink}>
+                   <PersonIcon/>
                     <ExitToAppIcon/>
                     <Typography className={classes.headerLogo} variant="body1">
                         Logout

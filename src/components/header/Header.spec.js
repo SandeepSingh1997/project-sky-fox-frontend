@@ -2,6 +2,8 @@ import React from "react";
 import {shallow} from "enzyme";
 import Header from "./Header";
 import {Typography} from "@material-ui/core";
+import PersonIcon from '@material-ui/icons/Person';
+
 
 describe("Basic rendering", () => {
     const testOnLogout = jest.fn();
@@ -27,5 +29,13 @@ describe("Basic rendering", () => {
         expect(logoutTypographyComponent.text()).toBe("Logout");
         expect(logoTypographyComponent.length).toBe(1);
         expect(logoTypographyComponent.text()).toBe("SkyFox Cinema");
+    });
+
+    it("Should render the profile icon if authenticated", () => {
+        const headerComponent = shallow(<Header isAuthenticated={true} onLogout={testOnLogout}/>);
+       
+        const profileIconComponent = headerComponent.find(PersonIcon);
+       
+        expect(profileIconComponent.length).toBe(1);
     });
 });
