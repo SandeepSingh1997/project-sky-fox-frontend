@@ -14,7 +14,7 @@ const Header = ({onLogout, isAuthenticated}) => {
         if (isAuthenticated) {
             return (
                 <div onClick={onLogout} className={classes.logoutLink}>
-                   <PersonIcon/>
+                   
                     <ExitToAppIcon/>
                     <Typography className={classes.headerLogo} variant="body1">
                         Logout
@@ -23,6 +23,8 @@ const Header = ({onLogout, isAuthenticated}) => {
             );
         }
     };
+
+
 
     return (
         <AppBar position={"sticky"}>
@@ -33,6 +35,7 @@ const Header = ({onLogout, isAuthenticated}) => {
                         SkyFox Cinema
                     </Typography>
                 </a>
+                <PersonIcon/>
                 {logoutSection()}
             </Toolbar>
         </AppBar>
