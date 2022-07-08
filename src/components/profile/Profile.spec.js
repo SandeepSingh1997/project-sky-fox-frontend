@@ -1,28 +1,30 @@
 import React from "react";
-import {fireEvent, render} from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import Profile from "./Profile";
+import Dialog from "@material-ui/core/Dialog";
 
+describe("Basic Rendering", () => {
+  it("should render change password button", () => {
+    const profile = render(<Profile />);
 
-describe("Basic Rendering",()=>{
+    const button = profile.getByRole("button", { name: /change password/i });
 
-    it("should render change password button",()=>{
-        const profile= render(<Profile/>);
+    expect(button).toBeDefined();
+  });
 
-        const button=profile.getByRole('button',{name:/change password/i});
+  it("should open changePasswordPopup when click on change password button", () => {
+    render(<Profile />);
 
-        expect(button).toBeDefined();
-    });
+    const button = screen.getByRole("button", { name: /change password/i });
 
-    it("should be able to click on the change password button",()=>{
-        const changePassword = jest.fn();
+    expect(
+      screen.queryByRole("heading", { name: /change password/i })
+    ).toBeNull();
 
-        const profile= render(<Profile onChangePassword={changePassword}/>);
+    fireEvent.click(button);
 
-        const button=profile.getByRole('button',{name:/change password/i});
-
-        fireEvent.click(button);
-
-        expect(changePassword).toBeCalledTimes(1);
-    });
-    
-})
+    expect(
+      screen.getByRole("heading", { name: /change password/i })
+    ).toBeDefined();
+  });
+});
