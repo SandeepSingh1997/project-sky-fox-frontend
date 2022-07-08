@@ -1,9 +1,9 @@
 import React from "react";
 
-const Profile=()=>{
+const Profile=(props)=>{
 
     return <div>
-        <button>Change Password</button>
+        <button onClick={props.onChangePassword}>Change Password</button>
     </div>;
 }
 

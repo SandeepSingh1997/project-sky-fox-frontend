@@ -2,3 +2,8 @@ fileignoreconfig:
 - filename: src/config/env-config.js
   checksum: fbf08d3f2f76031ac28ca5cb7c65294ba0d4de6c07d9f248f69e9dc9a417b69f
   ignore_detectors: [filename]
+- filename: src/components/profile/Profile.js
+  checksum: ff0843313396199e809d44d409bdb5fae0e0cd970159482c3afc885c12c22a6d
+- filename: src/components/profile/Profile.spec.js
+  checksum: fbdbde545e101c7f7bea277eac83ce6caf53d1daaf2a03c7487b5dbe0a7491b1
+version: ""  
