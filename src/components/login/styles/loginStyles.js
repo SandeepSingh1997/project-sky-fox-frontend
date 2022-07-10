@@ -16,6 +16,14 @@ export default makeStyles((theme) =>
         },
         loginErrorMessage: {
             marginTop: "8px"
+        },
+        signupToCentre: {
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "15px",
+        },
+        removeUnderline: {
+            textDecoration: "none"
         }
     })
 );

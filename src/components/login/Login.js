@@ -55,12 +55,13 @@ const Login = ({location, history, isAuthenticated, onLogin}) => {
                                 >
                                     Login
                                 </Button>
+                                <span className={classes.signupToCentre}>New to Skyfox?<a href="/Signup" className={classes.removeUnderline}>Signup here</a></span> 
                             </Form>
                         );
                     }
                 }
             </Formik>
-            <span>New to Skyfox? <a href="/Signup">Signup here</a></span> 
+            
         </div>
     );
 }
