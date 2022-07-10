@@ -1,5 +1,6 @@
 import React from "react";
 import {mount} from "enzyme";
+import {fireEvent, render, screen} from '@testing-library/react';
 import Login from "./Login";
 // noinspection ES6CheckImport
 import useLogin from "./hooks/useLogin";
@@ -52,5 +53,15 @@ describe("Basic Rendering", () => {
         expect(formikComponent.prop("initialValues")).toBe("initialValues");
         expect(formikComponent.prop("validationSchema")).toBe("formSchema");
         expect(formikComponent.prop("onSubmit")).toEqual(testHandleLogin);
+    });
+
+    it("should redirect to signup page when signup here is clicked", () => {
+        render(<Login isAuthenticated={false} onLogin={testOnLogin}
+            location={{state: {referrer: testReferrer}}}/>);
+
+        const textElement = screen.getByText(/^New to Skyfox\?$/i);
+        const linkEl = screen.getByRole('link', { name: "Signup here" });
+        expect(textElement).toBeInTheDocument();
+        expect(linkEl).toHaveAttribute('href', '/Signup');
     });
 });

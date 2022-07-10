@@ -60,6 +60,7 @@ const Login = ({location, history, isAuthenticated, onLogin}) => {
                     }
                 }
             </Formik>
+            <span>New to Skyfox? <a href="/Signup">Signup here</a></span> 
         </div>
     );
 }
