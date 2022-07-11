@@ -9,7 +9,7 @@ import {Login, ProtectedRoute} from "../login";
 import PropTypes from "prop-types";
 import moment from "moment";
 import Profile from "../profile/Profile";
-import Signup from "../../signup/Signup";
+import Signup from "../signup/Signup";
 
 const RootRouter = ({isAuthenticated, onLogin}) => {
     const todayDate = moment().format("YYYY-MM-DD");
