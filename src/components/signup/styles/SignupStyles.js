@@ -20,6 +20,9 @@ export default makeStyles((theme) =>
         signupErrorMessage: {
             marginTop: "8px"
         },
+        signupSuccessMessage: {
+            marginBottom: "28px"
+        },
         signupToCentre: {
             display: "flex",
             justifyContent: "center",
@@ -27,6 +30,19 @@ export default makeStyles((theme) =>
         },
         removeUnderline: {
             textDecoration: "none"
+        },
+        icon: {
+            display: "flex",
+            marginRight: "15px",
+            //Todo
+
+        },
+
+        iconC: {
+            display: "flex",
+            marginRight: "15px",
+            //Todo
+
         }
     })
 );

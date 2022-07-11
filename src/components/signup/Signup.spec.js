@@ -25,10 +25,13 @@ describe("Basic Rendering", () => {
     const testHandleSignup = jest.fn();
     const testReferrer = "/testReferrer";
     const testFrom = "testFrom";
+    const TestSuccessComponent = () => <div/>;
     const TestErrorComponent = () => <div/>;
+
 
     beforeEach(() => {
         when(useSignup).calledWith(testOnSignup).mockReturnValue({
+            successMessage: () => <TestSuccessComponent/>,
             errorMessage: () => <TestErrorComponent/>,
             handleSignup: testHandleSignup
         });
@@ -55,10 +58,14 @@ describe("Basic Rendering", () => {
         expect(formikComponent.prop("onSubmit")).toEqual(testHandleSignup);
     });
 
-    // it("should redirect to login page when signup is clicked", () => {
+    // it("should redirect to login page when signup form is submitted", () => {
     //     render(<Signup isAuthenticated={false} onSignup={testOnSignup}
     //                         location={{state: {referrer: testReferrer}}}/>);
-    //     const linkEl = screen.getByRole('button', { name: "Signup" });expect(getByRole('button', {name: "Login"})).toBeInTheDocument();
+    //     const history = createMemoryHistory();
+    //     const linkEl = screen.getByRole('button', { name: "Signup" });
+    //     fireEvent.click(linkEl);
+    //     expect(history.location.pathname).toBe('/login');
 
     // });
+
 });

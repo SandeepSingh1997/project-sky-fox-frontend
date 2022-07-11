@@ -20,7 +20,7 @@ const RootRouter = ({isAuthenticated, onLogin}) => {
                 <Redirect path="/" exact to={`/shows?date=${todayDate}`}/>
                 <ProtectedRoute exact path="/shows" component={Shows} isAuthenticated={isAuthenticated}/>
                 <ProtectedRoute exact path="/profile" component={Profile} isAuthenticated={isAuthenticated}/>
-                <Route exact path="/Signup" component={Signup}/>
+                <Route exact path="/Signup" component={Signup} isAuthenticated={isAuthenticated}/>
                 <Route exact path="/login"
                        component={(props) => <Login isAuthenticated={isAuthenticated} onLogin={onLogin} {...props}/>}/>
 

@@ -2,14 +2,28 @@ import React, {useState} from "react";
 import Typography from "@material-ui/core/Typography";
 import styles from "../styles/SignupStyles";
 
+
+
 export default (onSignup) => {
     const classes = styles();
     const [showError, setShowError] = useState(false);
+    
+
+
+    const successMessage = () => {
+        if(!showError) {
+            return (
+                <Typography variant="body1" color="primary" className={classes.signupErrorMessage}>
+                    Signup successfull
+                </Typography>
+            )
+        }
+    }
 
     const errorMessage = () => {
         if (showError) {
             return (
-                <Typography variant="body1" color="error" className={classes.loginErrorMessage}>
+                <Typography variant="body1" color="error" className={classes.signupErrorMessage}>
                     Signup failed
                 </Typography>
             )
@@ -29,13 +43,16 @@ export default (onSignup) => {
             setShowError(true);
         }
 
-        if(password != confirmPassword) {
+        if(password !== confirmPassword) {
             setShowError(true);
         }
-
+        
+        
         try {
             await onSignup(name, username, email, mobileNumber, password, confirmPassword);
             setShowError(false);
+            
+
         } catch (err) {
             if (err.response && err.response.status === 401 ) {
                 setShowError(true);
@@ -47,6 +64,7 @@ export default (onSignup) => {
 
     return {
         errorMessage: errorMessage,
-        handleSignup: handleSignup
+        handleSignup: handleSignup,
+        successMessage: successMessage
     };
 };
