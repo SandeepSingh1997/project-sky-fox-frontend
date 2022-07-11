@@ -41,9 +41,10 @@ const Header = ({ onLogout, isAuthenticated }) => {
             SkyFox Cinema
           </Typography>
         </a>
-       
+       <div className={classes.authenticatedSection}>
           {profileSection()}
           {logoutSection()}
+        </div>
       
       </Toolbar>
     </AppBar>

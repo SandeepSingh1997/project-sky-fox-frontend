@@ -28,8 +28,17 @@ export default makeStyles((theme) => ({
             color: "white",
             padding: "10px"
         },
+        authenticatedSection: {
+            display:"flex"
+        },
         profileLink: {
-            
+            display: 'flex',
+            justifyContent: "flex-start",
+            alignItems: "center",
+            cursor: "pointer",
+            marginRight:"7%",
+            color:theme.palette.primary.contrastText
+
         }
     })
 );
