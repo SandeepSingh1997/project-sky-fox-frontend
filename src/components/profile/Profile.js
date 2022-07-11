@@ -16,7 +16,7 @@ const Profile = (props) => {
         Change Password
       </Button>
       {changePasswordDialog && (
-        <ChangePasswordPopup />
+        <ChangePasswordPopup open={changePasswordDialog}/>
       )}
     </div>
   );

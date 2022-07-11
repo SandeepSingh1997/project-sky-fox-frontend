@@ -2,7 +2,7 @@ import {makeStyles} from "@material-ui/core";
 
 export default makeStyles((theme) => ({
         helperText: {
-            width: "max-content"
+            width: "fit-content"
         }
     })
 );
