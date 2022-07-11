@@ -45,7 +45,6 @@ const Header = ({ onLogout, isAuthenticated }) => {
           {profileSection()}
           {logoutSection()}
         </div>
-      
       </Toolbar>
     </AppBar>
   );

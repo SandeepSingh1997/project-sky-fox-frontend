@@ -38,7 +38,6 @@ export default makeStyles((theme) => ({
             cursor: "pointer",
             marginRight:"7%",
             color:theme.palette.primary.contrastText
-
         }
     })
 );

@@ -13,7 +13,7 @@ describe("Basic rendering", () => {
     );
 
     const typographyComponent = headerComponent.find(Typography);
-    const missingLogoutDivComponent = headerComponent.find("div");
+    const missingLogoutDivComponent = headerComponent.find("div").at(1);
     expect(missingLogoutDivComponent.length).toBe(0);
     expect(typographyComponent.length).toBe(1);
     expect(typographyComponent.text()).toBe("SkyFox Cinema");
@@ -26,7 +26,7 @@ describe("Basic rendering", () => {
 
     const typographyComponents = headerComponent.find(Typography);
     const logoTypographyComponent = typographyComponents.at(0);
-    const logoutDivComponent = headerComponent.find("div");
+    const logoutDivComponent = headerComponent.find("div").at(1);
     const logoutTypographyComponent = typographyComponents.at(1);
     expect(logoutDivComponent.prop("onClick")).toBe(testOnLogout);
     expect(logoutTypographyComponent.text()).toBe("Logout");
