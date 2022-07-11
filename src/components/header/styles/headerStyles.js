@@ -27,6 +27,9 @@ export default makeStyles((theme) => ({
         cartButton: {
             color: "white",
             padding: "10px"
+        },
+        profileLink: {
+            
         }
     })
 );

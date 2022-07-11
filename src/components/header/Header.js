@@ -22,6 +22,16 @@ const Header = ({ onLogout, isAuthenticated }) => {
     }
   };
 
+  const profileSection = () => {
+    if (isAuthenticated) {
+      return (
+        <a href="/profile" className={classes.profileLink}>
+          <PersonIcon />
+        </a>
+      );
+    }
+  };
+
   return (
     <AppBar position={"sticky"}>
       <Toolbar className={classes.toolbar}>
@@ -31,10 +41,10 @@ const Header = ({ onLogout, isAuthenticated }) => {
             SkyFox Cinema
           </Typography>
         </a>
-        <a href="/profile">
-          <PersonIcon />
-        </a>
-        {logoutSection()}
+       
+          {profileSection()}
+          {logoutSection()}
+      
       </Toolbar>
     </AppBar>
   );
