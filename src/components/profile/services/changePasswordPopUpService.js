@@ -1,4 +1,4 @@
-import { object, string } from "yup";
+import { object, string, ref } from "yup";
 
 export const initialValues = {
   currentPassword: "",
@@ -30,5 +30,6 @@ export const formSchema = object({
     .matches(
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
       "Must Contain One Uppercase, One Lowercase, One Number and one special case Character"
-    ),
+    )
+    .oneOf([ref("newPassword"), null], "Passwords must match"),
 });
