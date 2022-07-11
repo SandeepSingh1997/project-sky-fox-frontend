@@ -24,13 +24,19 @@ export default makeStyles((theme) =>
             justifyContent: "center",
             minWidth: "15%"
         },
+        moviePoster: {
+            objectFit: "cover",
+            width: "100%",
+            height: "120px",
+            margin: "0px 20px"
+        },
         dialogMain: {
             display: "flex",
             padding: "0px 20px 20px 0px",
             flexDirection: "column",
             justifyContent: "space-between",
-            minWidth: "85%",
-            maxWidth: "85%"
+            minWidth: "80%",
+            maxWidth: "80%"
         },
         movieMarquee: {
             fontWeight: "bold"

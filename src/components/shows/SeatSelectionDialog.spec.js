@@ -18,7 +18,8 @@ describe("Basic rendering and functionality", () => {
             name: "Movie 1",
             plot: "Suspense movie",
             duration: "1hr 30m",
-            imdbRating: "8.0"
+            imdbRating: "8.0",
+            posterURL: "https://aws.amazon.com/image.png"
         },
         slot: {startTime: "start time 1"}
     };
@@ -57,5 +58,13 @@ describe("Basic rendering and functionality", () => {
         fireEvent.click(getByText("Next"));
 
         expect(getByText("Customer Details is open")).toBeTruthy();
+    });
+
+    it("Should display movie poster on render", ()=>{
+        const {getByAltText} = render(<SeatSelectionDialog selectedShow={selectedShow} open={openDialog}
+            onClose={onClose}
+            updateShowsRevenue={updateShowRevenue}/>);
+
+        expect(getByAltText("movie-poster")).toBeTruthy();
     });
 });

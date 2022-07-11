@@ -18,8 +18,8 @@ export default makeStyles((theme) =>
         },
         moviePoster: {
             objectFit: "cover",
-            width: "90px",
-            height: "100px",
+            width: "80px",
+            height: "80px",
             marginRight: "10px"
         },
         showsHeader: {
