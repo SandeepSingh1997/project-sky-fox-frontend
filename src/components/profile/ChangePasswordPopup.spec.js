@@ -2,7 +2,7 @@ import React from "react";
 import { Formik } from "formik";
 import ChangePasswordPopup from "./ChangePasswordPopup";
 import { mount } from "enzyme";
-import { FormikTextField } from "../formik";
+import { FormikPasswordField } from "../formik";
 
 jest.mock("./services/changePasswordPopUpService", () => ({
   __esModule: true,
@@ -24,7 +24,7 @@ describe("Basic Render", () => {
   it("change password form should contain current password, new password and confirm password fields", ()=> {
     const changePasswordComponent = mount(<ChangePasswordPopup open={true} />);
 
-    const formikTextFieldComponent = changePasswordComponent.find(FormikTextField);
+    const formikTextFieldComponent = changePasswordComponent.find(FormikPasswordField);
 
     expect(formikTextFieldComponent.length).toBe(3);
   });

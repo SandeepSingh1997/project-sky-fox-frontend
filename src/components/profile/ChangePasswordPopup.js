@@ -1,5 +1,5 @@
 import { Form, Formik } from "formik";
-import { FormikTextField } from "../formik";
+import { FormikTextField, FormikPasswordField } from "../formik";
 import { Button, Dialog, DialogTitle } from "@material-ui/core";
 import React from "react";
 import {
@@ -23,23 +23,20 @@ export default function ChangePasswordPopup(props) {
           const { isValid } = props;
           return (
             <Form className={classes.form}>
-              <FormikTextField
+              <FormikPasswordField 
                 required
-                type="password"
                 margin="dense"
                 name="currentPassword"
                 label="Current Password"
               />
-              <FormikTextField
+              <FormikPasswordField
                 required
-                type="password"
                 margin="dense"
                 name="newPassword"
                 label="New Password"
               />
-              <FormikTextField
+              <FormikPasswordField
                 required
-                type="password"
                 margin="dense"
                 name="confirmPassword"
                 label="Confirm Password"
