@@ -16,6 +16,12 @@ export default makeStyles((theme) =>
                 backgroundColor: "#bdbdbd",
             }
         },
+        moviePoster: {
+            objectFit: "cover",
+            width: "90px",
+            height: "100px",
+            marginRight: "10px"
+        },
         showsHeader: {
             padding: "15px 0 0 15px",
             display: "flex",

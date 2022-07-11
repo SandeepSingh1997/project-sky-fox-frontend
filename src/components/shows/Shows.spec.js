@@ -57,12 +57,12 @@ describe("Basic rendering and functionality", () => {
                 {
                     id: 1,
                     cost: 150,
-                    movie: {name: "Movie 1"},
+                    movie: {name: "Movie 1", posterURL: "https://aws.amazon.com/image.png"},
                     slot: {startTime: "start time 1"}
                 }, {
                     id: 2,
                     cost: 160,
-                    movie: {name: "Movie 2"},
+                    movie: {name: "Movie 2", posterURL: "https://aws.amazon.com/image.png"},
                     slot: {startTime: "start time 2"}
                 }
             ]
@@ -85,6 +85,8 @@ describe("Basic rendering and functionality", () => {
         shows.getByText("Movie 2");
         shows.getByText("start time 2");
         shows.getByText("₹160");
+
+        shows.getAllByAltText("movie-poster");
     });
 
     it("Should push to history if next or previous clicked", () => {
@@ -118,5 +120,13 @@ describe("Basic rendering and functionality", () => {
 
         expect(showsRevenue.prop("showsRevenue")).toBe(549.99);
         expect(showsRevenue.prop("showsRevenueLoading")).toBe(false);
+    });
+
+    it("Should display movie poster when rendered", () => {
+        const shows = shallow(<Shows history={testHistory} location={testLocation} />);
+
+        const moviePoster = shows.find('img');
+
+        expect(moviePoster).toHaveLength(2);
     });
 });

@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import {
-    Avatar,
     Backdrop,
     Button,
     CircularProgress,
@@ -11,7 +10,6 @@ import {
     Typography
 } from "@material-ui/core";
 import styles from "./styles/showsStyles"
-import LocalMoviesIcon from "@material-ui/icons/LocalMovies";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import useShows from "./hooks/useShows";
@@ -64,10 +62,8 @@ export default ({location, history}) => {
                                 setSelectedShow(show);
                                 setShowSelectSeatDialog(true);
                             }}>
-                                <ListItemAvatar classes={{root: classes.localMoviesIcon}}>
-                                    <Avatar>
-                                        <LocalMoviesIcon/>
-                                    </Avatar>
+                                <ListItemAvatar  classes={{root: classes.localMoviesIcon}}>
+                                    <img className={classes.moviePoster} src={show.movie.posterURL} alt="movie-poster"></img>
                                 </ListItemAvatar>
                                 <ListItemText primary={show.movie.name} secondary={
                                     <>
