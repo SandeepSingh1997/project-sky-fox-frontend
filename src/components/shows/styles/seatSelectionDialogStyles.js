@@ -59,6 +59,10 @@ export default makeStyles((theme) =>
         },
         dialogButton: {
             marginLeft: "15px"
+        }, 
+        imdbSelector: {
+            color: "#808080",
+            paddingTop: "10px"
         }
     })
 );

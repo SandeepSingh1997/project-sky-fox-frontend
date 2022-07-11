@@ -32,7 +32,7 @@ describe("Basic rendering and functionality", () => {
         expect(queryByText(selectedShow.movie.name)).toBeTruthy();
         expect(queryByText(selectedShow.movie.plot)).toBeTruthy();
         expect(queryByText(selectedShow.movie.duration)).toBeTruthy();
-        expect(queryByText("IMDB Rating: "+(selectedShow.movie.imdbRating))).toBeTruthy();
+        expect(queryByText("IMDb rating: "+(selectedShow.movie.imdbRating))).toBeTruthy();
         expect(queryByText("Seats")).toBeTruthy();
         expect(queryByDisplayValue("1")).toBeTruthy();
     });

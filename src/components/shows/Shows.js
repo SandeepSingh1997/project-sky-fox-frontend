@@ -76,8 +76,8 @@ export default ({location, history}) => {
                                         >
                                             {show.slot.startTime}
                                         </Typography>
-                                        <Typography>
-                                            IMDB Rating: {show.movie.imdbRating}
+                                        <Typography className={classes.imdbSelector}>
+                                            IMDb Rating: {show.movie.imdbRating}
                                         </Typography>
                                     </>
                                 }/>

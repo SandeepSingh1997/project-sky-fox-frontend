@@ -81,12 +81,12 @@ describe("Basic rendering and functionality", () => {
         shows.getByText("Movie 1");
         shows.getByText("start time 1");
         shows.getByText("₹150");
-        shows.getByText("IMDB Rating: 8.0")
+        shows.getByText("IMDb Rating: 8.0")
 
         shows.getByText("Movie 2");
         shows.getByText("start time 2");
         shows.getByText("₹160");
-        shows.getByText("IMDB Rating: 7.5")
+        shows.getByText("IMDb Rating: 7.5")
 
         shows.getAllByAltText("movie-poster");
     });

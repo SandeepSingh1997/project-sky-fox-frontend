@@ -39,8 +39,8 @@ const SeatSelectionDialog = ({selectedShow, updateShowsRevenue, open, onClose}) 
                             <Typography variant="subtitle2" color="primary" className={classes.movieMarquee}>
                                 {selectedShow.movie.duration}
                             </Typography>
-                            <Typography>
-                                IMDB Rating: {selectedShow.movie.imdbRating}
+                            <Typography className={classes.imdbSelector}>
+                                IMDb rating: {selectedShow.movie.imdbRating}
                             </Typography>
                             <div className={classes.dialogBottom}>
                                 <div className={classes.seatsAndAmount}>
