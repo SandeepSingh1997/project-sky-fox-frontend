@@ -17,12 +17,27 @@ export default (onSignup) => {
     };
 
     const handleSignup = async (values) => {
-        const {name, username, email, mobileNumber, password, confirmPassword} = values;
+        const {name, username, email, mobileNumber,password, confirmPassword} = values;
+
+        let paswd=  /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
+
+        if(!(mobileNumber.length === 10  && mobileNumber !== 0)) {
+            setShowError(true);
+        }
+
+        if(!values.password.match(paswd)) {
+            setShowError(true);
+        }
+
+        if(password != confirmPassword) {
+            setShowError(true);
+        }
+
         try {
             await onSignup(name, username, email, mobileNumber, password, confirmPassword);
             setShowError(false);
         } catch (err) {
-            if (err.response && err.response.status === 401) {
+            if (err.response && err.response.status === 401 ) {
                 setShowError(true);
             } else {
                 throw err;

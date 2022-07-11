@@ -55,5 +55,10 @@ describe("Basic Rendering", () => {
         expect(formikComponent.prop("onSubmit")).toEqual(testHandleSignup);
     });
 
-    
+    // it("should redirect to login page when signup is clicked", () => {
+    //     render(<Signup isAuthenticated={false} onSignup={testOnSignup}
+    //                         location={{state: {referrer: testReferrer}}}/>);
+    //     const linkEl = screen.getByRole('button', { name: "Signup" });expect(getByRole('button', {name: "Login"})).toBeInTheDocument();
+
+    // });
 });
