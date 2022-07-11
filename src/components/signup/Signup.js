@@ -19,14 +19,14 @@ const Signup = ({location, history, isAuthenticated, onSignup}) => {
   });
 
   return (
-    <div className={classes.loginContainer}>
+    <div className={classes.signupContainer}>
             <Formik initialValues={initialValues}
                     onSubmit={handleSignup}
                     validationSchema={formSchema}>
                 {
                     (props) => { const {isValid,} = props;
                         return (
-                            <Form className={classes.loginForm}>
+                            <Form className={classes.signupForm}>
                               <FormikTextField
                                     required
                                     margin="dense"
@@ -68,15 +68,14 @@ const Signup = ({location, history, isAuthenticated, onSignup}) => {
                                 {
                                     errorMessage()
                                 }
-                                <a href="/login">
-                                <Button
+                                <a className={classes.removeUnderline} href="/login">
+                                <Button className={classes.signupButton}
                                     variant="contained"
                                     type="submit"
                                     disabled={!isValid}
-                                    color="primary"
-                                    className={classes.loginButton}
+                                    color="primary" 
                                 >
-                                    Signup
+                                Signup 
                                 </Button></a>
                             </Form>
                         );

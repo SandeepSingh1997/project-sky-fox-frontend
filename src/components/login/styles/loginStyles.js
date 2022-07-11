@@ -23,7 +23,8 @@ export default makeStyles((theme) =>
             marginTop: "15px",
         },
         removeUnderline: {
-            textDecoration: "none"
+            textDecoration: "none",
+            color: "purple"
         }
     })
 );
