@@ -35,7 +35,8 @@ export default ({location, history}) => {
             "id": "",
             "name": "",
             "duration": "",
-            "plot": ""
+            "plot": "",
+            "imdbRating": ""
         },
         "slot": {
             "id": "",
@@ -74,6 +75,9 @@ export default ({location, history}) => {
                                             color="textPrimary"
                                         >
                                             {show.slot.startTime}
+                                        </Typography>
+                                        <Typography>
+                                            IMDB Rating: {show.movie.imdbRating}
                                         </Typography>
                                     </>
                                 }/>

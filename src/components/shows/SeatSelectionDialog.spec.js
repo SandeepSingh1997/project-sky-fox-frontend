@@ -17,7 +17,8 @@ describe("Basic rendering and functionality", () => {
         movie: {
             name: "Movie 1",
             plot: "Suspense movie",
-            duration: "1hr 30m"
+            duration: "1hr 30m",
+            imdbRating: "8.0"
         },
         slot: {startTime: "start time 1"}
     };
@@ -30,6 +31,7 @@ describe("Basic rendering and functionality", () => {
         expect(queryByText(selectedShow.movie.name)).toBeTruthy();
         expect(queryByText(selectedShow.movie.plot)).toBeTruthy();
         expect(queryByText(selectedShow.movie.duration)).toBeTruthy();
+        expect(queryByText("IMDB Rating: "+(selectedShow.movie.imdbRating))).toBeTruthy();
         expect(queryByText("Seats")).toBeTruthy();
         expect(queryByDisplayValue("1")).toBeTruthy();
     });

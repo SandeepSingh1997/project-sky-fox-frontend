@@ -57,12 +57,12 @@ describe("Basic rendering and functionality", () => {
                 {
                     id: 1,
                     cost: 150,
-                    movie: {name: "Movie 1", posterURL: "https://aws.amazon.com/image.png"},
+                    movie: {name: "Movie 1", posterURL: "https://aws.amazon.com/image.png", imdbRating: "8.0"},
                     slot: {startTime: "start time 1"}
                 }, {
                     id: 2,
                     cost: 160,
-                    movie: {name: "Movie 2", posterURL: "https://aws.amazon.com/image.png"},
+                    movie: {name: "Movie 2", posterURL: "https://aws.amazon.com/image.png", imdbRating: "7.5"},
                     slot: {startTime: "start time 2"}
                 }
             ]
@@ -81,10 +81,12 @@ describe("Basic rendering and functionality", () => {
         shows.getByText("Movie 1");
         shows.getByText("start time 1");
         shows.getByText("₹150");
+        shows.getByText("IMDB Rating: 8.0")
 
         shows.getByText("Movie 2");
         shows.getByText("start time 2");
         shows.getByText("₹160");
+        shows.getByText("IMDB Rating: 7.5")
 
         shows.getAllByAltText("movie-poster");
     });
