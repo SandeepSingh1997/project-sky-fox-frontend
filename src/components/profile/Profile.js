@@ -7,7 +7,11 @@ import styles from "./styles/profileStyles";
 const Profile = (props) => {
   const [changePasswordDialog, setChangePasswordDialog] = useState(false);
 
-  const classes = styles()
+  const classes = styles();
+
+  const handleDialogClose = () => {
+    setChangePasswordDialog(false);
+  };
 
   return (
     <div>
@@ -22,7 +26,10 @@ const Profile = (props) => {
         Change Password
       </Button>
       {changePasswordDialog && (
-        <ChangePasswordPopup open={changePasswordDialog}/>
+        <ChangePasswordPopup
+          open={changePasswordDialog}
+          handleDialogClose={handleDialogClose}
+        />
       )}
     </div>
   );

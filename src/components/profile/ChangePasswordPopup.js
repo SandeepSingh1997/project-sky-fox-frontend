@@ -6,24 +6,24 @@ import {
   formSchema,
   initialValues,
 } from "./services/changePasswordPopUpService";
-import styles from "./styles/changePasswordStyles"
+import styles from "./styles/changePasswordStyles";
+import { Close } from "@material-ui/icons";
 
 export default function ChangePasswordPopup(props) {
-  
-  const classes = styles()
+  const classes = styles();
 
-  function handleClose(){
-
-}
   return (
-    <Dialog open={props.open} onClose={handleClose}>
-      <DialogTitle className={classes.title}>Change Password</DialogTitle>
+    <Dialog open={props.open} onClose={props.handleDialogClose}>
+      <DialogTitle className={classes.title}>
+        Change Password{" "}
+        <Close className={classes.close} onClick={props.handleDialogClose} />
+      </DialogTitle>
       <Formik initialValues={initialValues} validationSchema={formSchema}>
         {(props) => {
           const { isValid } = props;
           return (
             <Form className={classes.form}>
-              <FormikPasswordField 
+              <FormikPasswordField
                 required
                 margin="dense"
                 name="currentPassword"
@@ -41,7 +41,12 @@ export default function ChangePasswordPopup(props) {
                 name="confirmPassword"
                 label="Confirm Password"
               />
-              <Button className={classes.button} variant="contained" type="submit" color="primary">
+              <Button
+                className={classes.button}
+                variant="contained"
+                type="submit"
+                color="primary"
+              >
                 Submit
               </Button>
             </Form>

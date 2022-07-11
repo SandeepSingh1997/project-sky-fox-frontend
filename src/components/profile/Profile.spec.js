@@ -1,7 +1,6 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import Profile from "./Profile";
-import Dialog from "@material-ui/core/Dialog";
 
 describe("Basic Rendering", () => {
   it("should render change password button", () => {

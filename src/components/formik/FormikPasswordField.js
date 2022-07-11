@@ -36,7 +36,7 @@ const FormikPasswordField = (props) => {
       onChange={onChange}
       onBlur={onBlur}
       error={touched && Boolean(error)}
-      helperText={touched ? error : ''}
+      helperText={touched ? error : ""}
       FormHelperTextProps={{
         className: classes.helperText,
       }}

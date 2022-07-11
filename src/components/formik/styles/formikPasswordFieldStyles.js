@@ -1,8 +1,7 @@
-import {makeStyles} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 
 export default makeStyles((theme) => ({
-        helperText: {
-            width: "fit-content"
-        }
-    })
-);
+  helperText: {
+    width: "fit-content",
+  },
+}));
