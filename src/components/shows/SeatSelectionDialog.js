@@ -1,14 +1,17 @@
-import {Button, Dialog, Typography} from "@material-ui/core";
+import { Button, Dialog, Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "./styles/seatSelectionDialogStyles"
 import CustomerDetailsDialog from "./CustomerDetailsDialog";
-import {INR_SYMBOL} from "../../Constants";
+import { INR_SYMBOL } from "../../Constants";
 import PropTypes from "prop-types";
+import MoviePosterDialog from "./MoviePosterDialog";
 
-const SeatSelectionDialog = ({selectedShow, updateShowsRevenue, open, onClose}) => {
+const SeatSelectionDialog = ({ selectedShow, updateShowsRevenue, open, onClose }) => {
     const [showCustomerDetails, setShowCustomerDetails] = useState(false);
+    const [showMoviePoster, setShowMoviePoster] = useState(false);
     const [seats, setSeats] = useState("1");
+    const [selectedMovie, setSelectedMovie] = useState({});
     const classes = styles();
 
     const handleClose = () => {
@@ -27,7 +30,12 @@ const SeatSelectionDialog = ({selectedShow, updateShowsRevenue, open, onClose}) 
                     </Typography>
                     <div className={classes.dialogContent}>
                         <div className={classes.moviePicture}>
-                            <img className={classes.moviePoster} src={selectedShow.movie.posterURL} alt="movie-poster"></img>
+                            <img className={classes.moviePoster} src={selectedShow.movie.posterURL}
+                                alt="movie-poster"
+                                onClick={() => {
+                                    setSelectedMovie(selectedShow.movie);
+                                    setShowMoviePoster(true);
+                                }} />
                         </div>
                         <div className={classes.dialogMain}>
                             <Typography className={classes.movieMarquee} color="primary">
@@ -46,19 +54,19 @@ const SeatSelectionDialog = ({selectedShow, updateShowsRevenue, open, onClose}) 
                                 <div className={classes.seatsAndAmount}>
                                     <div className={classes.seatsSelector}>
                                         <TextField type="number" label="Seats" defaultValue="1"
-                                                   inputProps={{step: "1", min: "1", max: "15"}}
-                                                   onChange={(e) => setSeats(e.target.value)}/>
+                                            inputProps={{ step: "1", min: "1", max: "15" }}
+                                            onChange={(e) => setSeats(e.target.value)} />
                                     </div>
                                     <Typography variant="subtitle1" color="secondary">
                                         {`${INR_SYMBOL}${(selectedShow.cost * seats).toFixed(2)}`}
                                     </Typography>
                                 </div>
                                 <Button variant="contained" color="primary"
-                                        onClick={() => {
-                                            setShowCustomerDetails(true);
-                                            onClose();
-                                        }}
-                                        className={classes.dialogButton}>
+                                    onClick={() => {
+                                        setShowCustomerDetails(true);
+                                        onClose();
+                                    }}
+                                    className={classes.dialogButton}>
                                     Next
                                 </Button>
                             </div>
@@ -67,10 +75,14 @@ const SeatSelectionDialog = ({selectedShow, updateShowsRevenue, open, onClose}) 
                 </div>
             </Dialog>
             <CustomerDetailsDialog seats={seats} selectedShow={selectedShow} updateShowsRevenue={updateShowsRevenue}
-                                   open={showCustomerDetails} onClose={() => {
-                handleClose();
-                setShowCustomerDetails(false)
-            }}/>
+                open={showCustomerDetails} onClose={() => {
+                    handleClose();
+                    setShowCustomerDetails(false)
+                }} />
+            <MoviePosterDialog open={showMoviePoster} selectedMovie={selectedMovie} onClose={() => {
+                setShowMoviePoster(false)
+
+            }} />
         </>
     );
 }
