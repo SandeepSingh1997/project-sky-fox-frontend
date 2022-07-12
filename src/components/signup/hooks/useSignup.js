@@ -9,17 +9,6 @@ export default (onSignup) => {
     const [showError, setShowError] = useState(false);
     
 
-
-    const successMessage = () => {
-        if(!showError) {
-            return (
-                <Typography variant="body1" color="primary" className={classes.signupErrorMessage}>
-                    Signup successfull
-                </Typography>
-            )
-        }
-    }
-
     const errorMessage = () => {
         if (showError) {
             return (
@@ -28,31 +17,27 @@ export default (onSignup) => {
                 </Typography>
             )
         }
+        
     };
+
 
     const handleSignup = async (values) => {
         const {name, username, email, mobileNumber,password, confirmPassword} = values;
 
         let paswd=  /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 
-        if(!(mobileNumber.length === 10  && mobileNumber !== 0)) {
+        if(!(mobileNumber.length === 10  && mobileNumber !== 0) && (values.password.match(paswd)) && (password === confirmPassword)) {  
+           
             setShowError(true);
+            
         }
 
-        if(!values.password.match(paswd)) {
-            setShowError(true);
-        }
 
-        if(password !== confirmPassword) {
-            setShowError(true);
-        }
-        
-        
         try {
+
             await onSignup(name, username, email, mobileNumber, password, confirmPassword);
             setShowError(false);
-            
-
+           
         } catch (err) {
             if (err.response && err.response.status === 401 ) {
                 setShowError(true);
@@ -65,6 +50,5 @@ export default (onSignup) => {
     return {
         errorMessage: errorMessage,
         handleSignup: handleSignup,
-        successMessage: successMessage
     };
 };

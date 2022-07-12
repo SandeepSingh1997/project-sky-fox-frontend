@@ -30,13 +30,14 @@ export const formSchema = object({
         .max(10, "Must be 10 digits")
         .required("Mobile Number is required"),
     password: string("Enter password")
+        .matches(/^\S*$/, 'Whitespace is not allowed')
         .min(8, "Must be more than 8 characters")
         .max(16,"Must be less than 17 characters")
         .matches(passwdD, "Must include a digit")
         .matches(passwdSpl, "Must include a special character")
         .matches(passwdUp, "Must include an uppercase letter")
         .required("Password is required")
-        .required(" Password requires a digit, special character and uppercase letter"),
+        .required("Password requires a digit, special character and uppercase letter"),
     confirmPassword: string("Enter password again")
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
         .required("Confirm Password is required")

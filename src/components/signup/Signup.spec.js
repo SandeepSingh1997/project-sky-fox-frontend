@@ -31,7 +31,6 @@ describe("Basic Rendering", () => {
 
     beforeEach(() => {
         when(useSignup).calledWith(testOnSignup).mockReturnValue({
-            successMessage: () => <TestSuccessComponent/>,
             errorMessage: () => <TestErrorComponent/>,
             handleSignup: testHandleSignup
         });
@@ -58,14 +57,5 @@ describe("Basic Rendering", () => {
         expect(formikComponent.prop("onSubmit")).toEqual(testHandleSignup);
     });
 
-    // it("should redirect to login page when signup form is submitted", () => {
-    //     render(<Signup isAuthenticated={false} onSignup={testOnSignup}
-    //                         location={{state: {referrer: testReferrer}}}/>);
-    //     const history = createMemoryHistory();
-    //     const linkEl = screen.getByRole('button', { name: "Signup" });
-    //     fireEvent.click(linkEl);
-    //     expect(history.location.pathname).toBe('/login');
-
-    // });
 
 });
