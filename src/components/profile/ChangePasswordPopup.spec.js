@@ -1,10 +1,12 @@
 import React from "react";
-import { Formik } from "formik";
+import { Form, Formik } from "formik";
 import ChangePasswordPopup from "./ChangePasswordPopup";
 import { mount } from "enzyme";
 import { FormikPasswordField } from "../formik";
 import { Close } from "@material-ui/icons";
 import { fireEvent } from "@testing-library/react";
+import { when } from "jest-when";
+import { Button, Snackbar } from "@material-ui/core";
 
 jest.mock("./services/changePasswordPopUpService", () => ({
   __esModule: true,
@@ -43,5 +45,18 @@ describe("Basic Render", () => {
     closeIconComponent.simulate("click");
 
     expect(handleClose).toHaveBeenCalledTimes(1);
+  });
+
+  it("should throw success toast on successful login", () => {
+    const changePasswordComponent = mount(
+      <ChangePasswordPopup open={true} handleDialogClose={handleClose} />
+    );
+    const formikComponent = changePasswordComponent.find("form").first();
+
+    expect(formikComponent.length).toBe(1);
+
+    formikComponent.find(Button).simulate('click');
+
+    expect(changePasswordComponent.find(Snackbar).length).toBe(1);
   });
 });
