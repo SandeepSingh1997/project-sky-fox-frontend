@@ -70,7 +70,7 @@ describe("Basic rendering and functionality", () => {
         fireEvent.click(getByTestId("bookButton"));
 
         const expectedPayload = {
-            "customer": {"name": "Name", "phoneNumber": "1234567890"},
+            "movieAudience": {"name": "Name", "phoneNumber": "1234567890"},
             "date": "2020-06-19",
             "noOfSeats": "2",
             "showId": 1
