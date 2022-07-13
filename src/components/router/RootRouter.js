@@ -1,11 +1,16 @@
 // noinspection ES6CheckImport
-import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
-import React from "react";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
+import React, { useState } from "react";
 import Shows from "../shows/Shows";
-import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
-import BlockIcon from '@material-ui/icons/Block';
-import {Error} from "../common";
-import {Login, ProtectedRoute} from "../login";
+import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
+import BlockIcon from "@material-ui/icons/Block";
+import { Error } from "../common";
+import { Login, ProtectedRoute } from "../login";
 import PropTypes from "prop-types";
 import moment from "moment";
 import Profile from "../profile/Profile";
@@ -35,8 +40,8 @@ const RootRouter = ({isAuthenticated, onLogin, onSignup}) => {
 };
 
 RootRouter.propTypes = {
-    isAuthenticated: PropTypes.bool.isRequired,
-    onLogin: PropTypes.func.isRequired
+  isAuthenticated: PropTypes.bool.isRequired,
+  onLogin: PropTypes.func.isRequired,
 };
 
 export default RootRouter;

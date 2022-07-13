@@ -29,6 +29,7 @@ const Profile = (props) => {
         <ChangePasswordPopup
           open={changePasswordDialog}
           handleDialogClose={handleDialogClose}
+          {...props}
         />
       )}
     </div>

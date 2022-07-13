@@ -1,4 +1,5 @@
 import { object, string, ref } from "yup";
+import apiService from "../../../helpers/apiService";
 
 export const initialValues = {
   currentPassword: "",
@@ -33,3 +34,10 @@ export const formSchema = object({
     )
     .oneOf([ref("newPassword"), null], "Passwords must match"),
 });
+
+
+export default {
+  put: async (payload) => {
+    return await apiService.put("password", payload);
+}
+}

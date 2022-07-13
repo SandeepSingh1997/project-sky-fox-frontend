@@ -3,16 +3,21 @@ import { Form, Formik } from "formik";
 import ChangePasswordPopup from "./ChangePasswordPopup";
 import { mount } from "enzyme";
 import { FormikPasswordField } from "../formik";
-import { Close } from "@material-ui/icons";
-import { fireEvent } from "@testing-library/react";
+import { Close, SyncAlt } from "@material-ui/icons";
+import { screen, render } from "@testing-library/react";
+import user from "@testing-library/user-event";
 import { when } from "jest-when";
 import { Button, Snackbar } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
+
 
 jest.mock("./services/changePasswordPopUpService", () => ({
   __esModule: true,
   initialValues: "initialValues",
   formSchema: "formSchema",
 }));
+
+
 
 const handleClose = jest.fn();
 
@@ -36,7 +41,7 @@ describe("Basic Render", () => {
     expect(formikTextFieldComponent.length).toBe(3);
   });
 
-  it("should close the dchange password popup on clicking close button", () => {
+  it("should close the change password popup on clicking close button", () => {
     const profileComponent = mount(
       <ChangePasswordPopup open={true} handleDialogClose={handleClose} />
     );
@@ -46,17 +51,20 @@ describe("Basic Render", () => {
 
     expect(handleClose).toHaveBeenCalledTimes(1);
   });
+/*
+  it("should throw success toast on successful login", async () => {
+   render(<ChangePasswordPopup open={true} handleDialogClose={handleClose}/>)
+   
 
-  it("should throw success toast on successful login", () => {
-    const changePasswordComponent = mount(
-      <ChangePasswordPopup open={true} handleDialogClose={handleClose} />
-    );
-    const formikComponent = changePasswordComponent.find("form").first();
+   await user.type(screen.getByLabelText(/current password/i), 'Varshni@123');
+   await user.type(screen.getByLabelText(/new password/i), 'Deepa@123');
+   await user.type(screen.getByLabelText(/confirm password/i), 'Deepa@123');
+ 
+   await user.click(screen.getByRole('button', {name: /submit/i}));
 
-    expect(formikComponent.length).toBe(1);
-
-    formikComponent.find(Button).simulate('click');
-
-    expect(changePasswordComponent.find(Snackbar).length).toBe(1);
+    expect(screen.getByText(/password changed successfully/i)).toBeDefined();
+ 
+ 
   });
+*/
 });

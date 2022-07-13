@@ -1,13 +1,9 @@
 import { Form, Formik } from "formik";
-import { FormikTextField, FormikPasswordField } from "../formik";
-import {
-  Button,
-  Dialog,
-  DialogTitle,
-  Snackbar
-} from "@material-ui/core";
+import { FormikPasswordField } from "../formik";
+import { Button, Dialog, DialogTitle, Snackbar } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
-import React, { useState } from "react";
+import React, { useState, ReactDOM } from "react";
+import changePasswordPopupService from "./services/changePasswordPopUpService";
 import {
   formSchema,
   initialValues,
@@ -16,12 +12,48 @@ import styles from "./styles/changePasswordStyles";
 import { Close } from "@material-ui/icons";
 
 export default function ChangePasswordPopup(props) {
+
   const classes = styles();
-  const [toastOpen, setToastOpen] = useState(false);
+  const [toast, setToast] = useState({
+    status: false,
+    message: "",
+    severity: "success",
+  });
 
   function handleClose() {
-    setToastOpen(false);
+    setToast({ ...toast, status: false });
   }
+
+  const handleSubmit = async (formData) => {
+    const payload = {
+      currentPassword: formData.currentPassword,
+      newPassword: formData.newPassword,
+    };
+
+    try {
+      const response = await changePasswordPopupService.put(payload);
+      if (response.status === 200) {
+        setToast({
+          message: "Your password has been changed successfully",
+          status: true,
+          severity: "success",
+        });
+        setTimeout(() => {
+          window.history.replaceState(null, null, "/login")
+          props.onLogout();
+        }, 2000);
+      }
+    } catch (err) {
+      console.log(err.response);
+      if (err.response.status === 400) {
+        setToast({
+          message: err.response.data.message,
+          status: true,
+          severity: "error",
+        });
+      }
+    }
+  };
 
   return (
     <Dialog open={props.open} onClose={props.handleDialogClose}>
@@ -33,7 +65,7 @@ export default function ChangePasswordPopup(props) {
         initialValues={initialValues}
         validationSchema={formSchema}
         onSubmit={(values, actions) => {
-          setToastOpen(true);
+          handleSubmit(values);
         }}
       >
         {(props) => {
@@ -71,17 +103,22 @@ export default function ChangePasswordPopup(props) {
         }}
       </Formik>
 
-      <Snackbar
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-        open={toastOpen}
-        autoHideDuration={6000}
-        onClose={handleClose}
-      >
-        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-          This is a success message!
-        </Alert>
-      </Snackbar>
+      {toast.status && (
+        <Snackbar
+          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+          open={toast.status}
+          autoHideDuration={6000}
+          onClose={handleClose}
+        >
+          <Alert
+            onClose={handleClose}
+            severity={toast.severity}
+            sx={{ width: "100%" }}
+          >
+            {toast.message}
+          </Alert>
+        </Snackbar>
+      )}
     </Dialog>
   );
 }
-
