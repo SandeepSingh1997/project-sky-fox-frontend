@@ -1,7 +1,7 @@
-import React, { useEffect} from "react";
+import React, { useEffect, useState} from "react";
 import {Form, Formik} from "formik";
 import {FormikTextField, FormikPasswordField} from "../formik";
-import {Button} from "@material-ui/core";
+import {Button, Snackbar} from "@material-ui/core";
 import styles from "./styles/SignupStyles";
 import PropTypes from "prop-types";
 import useSignup from "./hooks/useSignup";
@@ -12,8 +12,8 @@ import {formSchema, initialValues} from "./services/SignupFormService";
 const Signup = ({location, history, isAuthenticated, onSignup}) => {
 
   const classes = styles();
-  const {from} = location.state || {from: {pathname: "/"}};
-  const {errorMessage, handleSignup} = useSignup(onSignup);
+  const {from} = location.state || {from: {pathname: "/login"}};
+  const {successMessage, errorMessage, handleSignup} = useSignup(onSignup);
 
 
   useEffect(() => {
@@ -85,6 +85,7 @@ const Signup = ({location, history, isAuthenticated, onSignup}) => {
                     }
                 }
             </Formik>
+            {successMessage()}
         </div>
   );
 };

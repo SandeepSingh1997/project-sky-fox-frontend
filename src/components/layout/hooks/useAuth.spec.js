@@ -1,6 +1,6 @@
 import {act, renderHook} from "@testing-library/react-hooks";
 import useAuth from "./useAuth";
-import {isLoggedIn, login, logout} from "../../../helpers/authService";
+import {isLoggedIn, login, logout, isSignedUp, signup} from "../../../helpers/authService";
 import {when} from "jest-when";
 
 jest.mock("../../../helpers/authService", () => ({
@@ -79,4 +79,32 @@ describe("Basic logic", () => {
         expect(logout).toBeCalledTimes(1);
         expect(isAuthenticated).toBe(false);
     });
+
+    // it("should signup successfuly", async () => {
+    //     const testName = "testName";
+    //     const testUsername = "testUsername";
+    //     const testEmail = "testEmail";
+    //     const testmobileNumber = "testmobileNumber";
+    //     const testPassword = "testPassword";
+    //     const testconfirmPassword = "testconfirmPassword";
+        
+    //     isSignedUp.mockReturnValue(true);
+    //     const renderHookResult = renderHook(() => useAuth());
+    //     const {result} = renderHookResult;
+    //     when(signup).calledWith(testName, testUsername, testEmail, testmobileNumber, testPassword, testconfirmPassword).mockResolvedValue("userDetails");
+
+    //     const {handleSignup} = result.current;
+
+    //     let userDetails;
+    //     await act(async () => {
+    //         userDetails = await handleSignup(testName, testUsername, testEmail, testmobileNumber, testPassword, testconfirmPassword);
+    //     });
+
+    //     const {isAuthenticated} = result.current;
+    //     // noinspection JSUnusedAssignment
+    //     expect(userDetails).toBe("userDetails");
+    //     expect(isAuthenticated).toBe(true);
+    // });
+
+
 });

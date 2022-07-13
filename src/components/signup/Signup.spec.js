@@ -31,6 +31,7 @@ describe("Basic Rendering", () => {
 
     beforeEach(() => {
         when(useSignup).calledWith(testOnSignup).mockReturnValue({
+            successMessage: () => <TestSuccessComponent/>,
             errorMessage: () => <TestErrorComponent/>,
             handleSignup: testHandleSignup
         });

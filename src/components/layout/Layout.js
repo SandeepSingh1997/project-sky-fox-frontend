@@ -7,14 +7,14 @@ import useAuth from "./hooks/useAuth";
 
 export default () => {
     const classes = styles();
-    const {isAuthenticated, handleLogin, handleLogout} = useAuth();
+    const {isAuthenticated, handleLogin, handleLogout, handleSignup} = useAuth();
 
     return (
         <Box>
             <Header onLogout={handleLogout} isAuthenticated={isAuthenticated}/>
             <Container maxWidth={false} className={classes.container}>
                 <Card>
-                    <RootRouter isAuthenticated={isAuthenticated} onLogin={handleLogin}/>
+                    <RootRouter isAuthenticated={isAuthenticated} onLogin={handleLogin} onSignup={handleSignup}/>
                 </Card>
             </Container>
         </Box>

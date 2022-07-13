@@ -11,7 +11,7 @@ import moment from "moment";
 import Profile from "../profile/Profile";
 import Signup from "../signup/Signup";
 
-const RootRouter = ({isAuthenticated, onLogin}) => {
+const RootRouter = ({isAuthenticated, onLogin, onSignup}) => {
     const todayDate = moment().format("YYYY-MM-DD");
 
     return (
@@ -20,18 +20,14 @@ const RootRouter = ({isAuthenticated, onLogin}) => {
                 <Redirect path="/" exact to={`/shows?date=${todayDate}`}/>
                 <ProtectedRoute exact path="/shows" component={Shows} isAuthenticated={isAuthenticated}/>
                 <ProtectedRoute exact path="/profile" component={Profile} isAuthenticated={isAuthenticated}/>
-                <Route exact path="/Signup" component={Signup} isAuthenticated={isAuthenticated}/>
-                <Route exact path="/login"
-                       component={(props) => <Login isAuthenticated={isAuthenticated} onLogin={onLogin} {...props}/>}/>
+                
+                <Route exact path="/Signup" component={(props) => <Signup isAuthenticated={isAuthenticated} onSignup={onSignup} {...props}/>}/>
+                
+                <Route exact path="/login" component={(props) => <Login isAuthenticated={isAuthenticated} onLogin={onLogin} {...props}/>}/>
 
-                <Route exact path="/error" component={
-                    () => <Error errorIcon={ErrorOutlineIcon} errorMessage={"Oops..Something went wrong"}/>
-                }
-                />
+                <Route exact path="/error" component={() => <Error errorIcon={ErrorOutlineIcon} errorMessage={"Oops..Something went wrong"}/>}/>
 
-                <Route component={
-                    () => <Error errorIcon={BlockIcon} errorMessage={"Not Found"}/>
-                }/>
+                <Route component={() => <Error errorIcon={BlockIcon} errorMessage={"Not Found"}/>}/>
 
             </Switch>
         </Router>

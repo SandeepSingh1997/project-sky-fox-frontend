@@ -1,7 +1,7 @@
 import axios from "axios";
 import {when} from "jest-when";
 import {urls} from "../config/env-config";
-import {authHeader, isLoggedIn, login, logout} from "./authService";
+import {authHeader, isLoggedIn, login, logout, signup, isSignedUp} from "./authService";
 
 jest.mock("axios", () => ({
     get: jest.fn(),
@@ -11,6 +11,11 @@ describe("Basic logic", () => {
     const testUsername = "testUsername";
     const testPassword = "testPassword";
     const expectedToken = "testUsername:testPassword";
+
+    const testName = "testName";
+    const testEmail = "testEmail";
+    const testmobileNumber = "testmobileNumber";
+    const testconfirmPassword = "testconfirmPassword";
 
     beforeAll(() => {
         window.btoa = (data) => data;
@@ -100,7 +105,25 @@ describe("Basic logic", () => {
         expect(localStorage.getItem("skyfox_token")).toBe(null);
     });
 
+    // it("should return if user is signed up successfully", async () => {
+    //     const testConfig = {
+    //         headers: {
+    //             Authorization: 'Basic testName:testUsername:testEmail:testmobileNumber:testPassword:testconfirmPassword'
+    //         }
+    //     };
+
+    //     when(axios.get)
+    //         .calledWith(`${urls.service}/Signup`, testConfig)
+    //         .mockResolvedValue("unused");
+
+    //     await signup(testName, testUsername,testEmail, testmobileNumber, testPassword, testconfirmPassword);
+    //     expect(isSignedUp).toBe(true);
+
+    // })
+
     afterEach(() => {
         localStorage.removeItem("skyfox_token");
     });
+
+    
 });

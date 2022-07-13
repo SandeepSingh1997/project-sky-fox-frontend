@@ -30,19 +30,7 @@ export default makeStyles((theme) =>
         },
         removeUnderline: {
             textDecoration: "none"
-        },
-        icon: {
-            display: "flex",
-            marginRight: "15px",
-            //Todo
-
-        },
-
-        iconC: {
-            display: "flex",
-            marginRight: "15px",
-            //Todo
-
         }
+
     })
 );

@@ -24,7 +24,24 @@ export const login = async (username, password) => {
     return userDetails;
 }
 
+export const signup = async (name, username, email, mobileNumber, password, confirmPassword) => {
+    const token = authBasic(name, username, email, mobileNumber, password, confirmPassword);
+    const config = {
+        headers: {
+            Authorization: 'Basic ' + token
+        }
+    };
+    const response = await axios.get(`${urls.service}/Signup`, config);
+    const userDetails = response.data;
+    localStorage.setItem(tokenKey, token)
+    return userDetails;
+}
+
 export const isLoggedIn = () => {
+    return localStorage.getItem(tokenKey) !== null;
+}
+
+export const isSignedUp = () => {
     return localStorage.getItem(tokenKey) !== null;
 }
 

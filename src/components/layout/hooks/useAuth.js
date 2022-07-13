@@ -1,5 +1,7 @@
+import { Email } from "@material-ui/icons";
 import {useEffect, useState} from "react";
-import {isLoggedIn, login, logout} from "../../../helpers/authService";
+import {isLoggedIn, login, logout, signup} from "../../../helpers/authService";
+import Signup from "../../signup/Signup";
 
 export default () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -18,9 +20,18 @@ export default () => {
         setIsAuthenticated(false);
     };
 
+    const handleSignup = async(name, username, email, mobileNumner, password, confirmPassword) => 
+    {
+        const userSDetails = await signup(name, username, email, mobileNumner, password, confirmPassword)
+        setIsAuthenticated(true);
+        return userSDetails;
+        
+    }
+
     return {
         isAuthenticated: isAuthenticated,
         handleLogin: handleLogin,
-        handleLogout: handleLogout
+        handleLogout: handleLogout,
+        handleSignup: handleSignup
     };
 }

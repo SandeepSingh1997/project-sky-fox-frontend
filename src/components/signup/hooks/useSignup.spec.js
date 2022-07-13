@@ -3,7 +3,6 @@ import useSignup from "./useSignup";
 import React from "react";
 import {when} from "jest-when";
 import {shallow} from "enzyme";
-import {useHistory} from "react-router-dom";
 
 
 describe("Basic logic", () => {
