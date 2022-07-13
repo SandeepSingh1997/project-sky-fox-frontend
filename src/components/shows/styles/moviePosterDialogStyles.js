@@ -4,10 +4,10 @@ export default makeStyles((theme) =>
 ({
     dialogRoot: {
         minHeight: "30vh",
-        maxHeight: "80vh"
+        maxHeight: "90vh",
+        padding: "20px"
     },
     poster: {
-        padding: "30px",
         height: "640px",
         width: "475px",
         objectFit: "cover",
@@ -15,15 +15,16 @@ export default makeStyles((theme) =>
     posterTitle: {
         fontWeight: "bold",
         margin: "auto",
-        paddingLeft: "10px"
+        textAlign: "center"
+
     },
     posterHeader: {
+        width: "475px",
         display: "flex",
         alignItems: "center",
-        marginTop: "20px"
+        marginBottom: "20px"
     },
     closeIcon: {
         cursor: "pointer",
-        marginRight: "10px"
     }
 }));
