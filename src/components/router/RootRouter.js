@@ -16,27 +16,69 @@ import moment from "moment";
 import Profile from "../profile/Profile";
 import Signup from "../signup/Signup";
 
-const RootRouter = ({isAuthenticated, onLogin, onSignup}) => {
-    const todayDate = moment().format("YYYY-MM-DD");
+const RootRouter = ({ isAuthenticated, onLogin, onSignup, onLogout }) => {
+  const todayDate = moment().format("YYYY-MM-DD");
 
-    return (
-        <Router>
-            <Switch>
-                <Redirect path="/" exact to={`/shows?date=${todayDate}`}/>
-                <ProtectedRoute exact path="/shows" component={Shows} isAuthenticated={isAuthenticated}/>
-                <ProtectedRoute exact path="/profile" component={Profile} isAuthenticated={isAuthenticated}/>
-                
-                <Route exact path="/Signup" component={(props) => <Signup isAuthenticated={isAuthenticated} onSignup={onSignup} {...props}/>}/>
-                
-                <Route exact path="/login" component={(props) => <Login isAuthenticated={isAuthenticated} onLogin={onLogin} {...props}/>}/>
+  return (
+    <Router>
+      <Switch>
+        <Redirect path="/" exact to={`/shows?date=${todayDate}`} />
+        <ProtectedRoute
+          exact
+          path="/shows"
+          component={Shows}
+          isAuthenticated={isAuthenticated}
+        />
+        <ProtectedRoute
+          exact
+          path="/profile"
+          component={(props) => <Profile onLogout={onLogout} />}
+          isAuthenticated={isAuthenticated}
+        />
 
-                <Route exact path="/error" component={() => <Error errorIcon={ErrorOutlineIcon} errorMessage={"Oops..Something went wrong"}/>}/>
+        <Route
+          exact
+          path="/Signup"
+          component={(props) => (
+            <Signup
+              isAuthenticated={isAuthenticated}
+              onSignup={onSignup}
+              {...props}
+            />
+          )}
+        />
 
-                <Route component={() => <Error errorIcon={BlockIcon} errorMessage={"Not Found"}/>}/>
+        <Route
+          exact
+          path="/login"
+          component={(props) => (
+            <Login
+              isAuthenticated={isAuthenticated}
+              onLogin={onLogin}
+              {...props}
+            />
+          )}
+        />
 
-            </Switch>
-        </Router>
-    );
+        <Route
+          exact
+          path="/error"
+          component={() => (
+            <Error
+              errorIcon={ErrorOutlineIcon}
+              errorMessage={"Oops..Something went wrong"}
+            />
+          )}
+        />
+
+        <Route
+          component={() => (
+            <Error errorIcon={BlockIcon} errorMessage={"Not Found"} />
+          )}
+        />
+      </Switch>
+    </Router>
+  );
 };
 
 RootRouter.propTypes = {

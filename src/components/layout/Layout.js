@@ -14,7 +14,7 @@ export default () => {
             <Header onLogout={handleLogout} isAuthenticated={isAuthenticated}/>
             <Container maxWidth={false} className={classes.container}>
                 <Card>
-                    <RootRouter isAuthenticated={isAuthenticated} onLogin={handleLogin} onSignup={handleSignup}/>
+                    <RootRouter isAuthenticated={isAuthenticated} onLogin={handleLogin} onSignup={handleSignup} onLogout={handleLogout} />
                 </Card>
             </Container>
         </Box>
