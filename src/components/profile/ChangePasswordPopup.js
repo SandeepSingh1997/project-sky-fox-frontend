@@ -34,17 +34,16 @@ export default function ChangePasswordPopup(props) {
       const response = await changePasswordPopupService.put(payload);
       if (response.status === 200) {
         setToast({
-          message: "Your password has been changed successfully",
+          message: "Successfully updated password",
           status: true,
           severity: "success",
         });
         setTimeout(() => {
-          window.history.replaceState(null, null, "/login")
+          props.history.replace("/", "urlhistory")
           props.onLogout();
         }, 2000);
       }
     } catch (err) {
-      console.log(err.response);
       if (err.response.status === 400) {
         setToast({
           message: err.response.data.message,
@@ -56,7 +55,7 @@ export default function ChangePasswordPopup(props) {
   };
 
   return (
-    <Dialog open={props.open} onClose={props.handleDialogClose}>
+    <Dialog open={props.open} onClose={props.handleDialogClose} className={classes.dialog}>
       <DialogTitle className={classes.title}>
         Change Password{" "}
         <Close className={classes.close} onClick={props.handleDialogClose} />
@@ -113,6 +112,7 @@ export default function ChangePasswordPopup(props) {
           <Alert
             onClose={handleClose}
             severity={toast.severity}
+            variant="filled"
             sx={{ width: "100%" }}
           >
             {toast.message}

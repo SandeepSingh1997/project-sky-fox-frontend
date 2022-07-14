@@ -21,7 +21,6 @@ const FormikPasswordField = (props) => {
   const [visibilityStatus, changeVisibilityStatus] = useState(false);
 
   const handleClickShowPassword = () => {
-    console.log("he");
     changeVisibilityStatus(!visibilityStatus);
   };
 

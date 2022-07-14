@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Typography from "@material-ui/core/Typography";
 import styles from "../styles/loginStyles"
 
-export default (onLogin) => {
+export default (onLogin, history) => {
     const classes = styles();
     const [showError, setShowError] = useState(false);
 
@@ -21,6 +21,7 @@ export default (onLogin) => {
         try {
             await onLogin(username, password);
             setShowError(false);
+            history.replace('/');
         } catch (err) {
             if (err.response && err.response.status === 401) {
                 setShowError(true);
@@ -32,6 +33,6 @@ export default (onLogin) => {
 
     return {
         errorMessage: errorMessage,
-        handleLogin: handleLogin
+        handleLogin: handleLogin,
     };
 };

@@ -32,7 +32,7 @@ const RootRouter = ({ isAuthenticated, onLogin, onSignup, onLogout }) => {
         <ProtectedRoute
           exact
           path="/profile"
-          component={(props) => <Profile onLogout={onLogout} />}
+          component={(props) => <Profile onLogout={onLogout} {...props} />}
           isAuthenticated={isAuthenticated}
         />
 

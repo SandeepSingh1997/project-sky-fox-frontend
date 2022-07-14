@@ -3,8 +3,10 @@ import {useEffect, useState} from "react";
 import {isLoggedIn, login, logout, signup} from "../../../helpers/authService";
 import Signup from "../../signup/Signup";
 
+
 export default () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+
     useEffect(() => {
         setIsAuthenticated(isLoggedIn());
     }, []);
