@@ -11,11 +11,10 @@ describe("Basic logic", () => {
     const testUsername = "testUsername";
     const testPassword = "testPassword";
     const expectedToken = "testUsername:testPassword";
-
     const testName = "testName";
-    const testEmail = "testEmail";
-    const testmobileNumber = "testmobileNumber";
-    const testconfirmPassword = "testconfirmPassword";
+    const testEmail = "testEmail@email.com";
+    const testphoneNumber = "9876543210";
+    const testconfirmPassword = "testPassword";
 
     beforeAll(() => {
         window.btoa = (data) => data;
@@ -106,17 +105,19 @@ describe("Basic logic", () => {
     });
 
     // it("should return if user is signed up successfully", async () => {
-    //     const testConfig = {
-    //         headers: {
-    //             Authorization: 'Basic testName:testUsername:testEmail:testmobileNumber:testPassword:testconfirmPassword'
-    //         }
-    //     };
-
-    //     when(axios.get)
-    //         .calledWith(`${urls.service}/Signup`, testConfig)
+    //     const data = {
+    //         name: testName,
+    //         email: testEmail,
+    //         phoneNumber: testphoneNumber,
+    //         username: testUsername,
+    //         password: testPassword
+    //     }
+        
+    //     when(axios.post)
+    //         .calledWith(`${urls.service}/customers`, data)
     //         .mockResolvedValue("unused");
 
-    //     await signup(testName, testUsername,testEmail, testmobileNumber, testPassword, testconfirmPassword);
+    //     await signup(testName, testEmail, testphoneNumber, testUsername, testPassword);
     //     expect(isSignedUp).toBe(true);
 
     // })

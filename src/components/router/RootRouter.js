@@ -5,7 +5,7 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-import React, { useState } from "react";
+import React from "react";
 import Shows from "../shows/Shows";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import BlockIcon from "@material-ui/icons/Block";
@@ -38,7 +38,7 @@ const RootRouter = ({ isAuthenticated, onLogin, onSignup, onLogout }) => {
 
         <Route
           exact
-          path="/Signup"
+          path="/signup"
           component={(props) => (
             <Signup
               isAuthenticated={isAuthenticated}

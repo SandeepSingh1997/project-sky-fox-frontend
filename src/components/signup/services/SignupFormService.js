@@ -1,12 +1,11 @@
 import {object, string} from "yup";
 import * as Yup from 'yup';
 
-
 export const initialValues = {
     name: '',
     username: '',
     email: '',
-    mobileNumber: '',
+    phoneNumber: '',
     password: '',
     confirmPassword: '',
 
@@ -20,11 +19,25 @@ const passwdUp = /^(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 export const formSchema = object({
     name: string("Enter name")
         .required("Name is required"),
-    username: string("Enter username") //check from backend
+    username: string("Enter username") 
         .required("Username is required"),
+        // .test('Unique Username', 'Username already exists',
+        //         function (value) {
+        //             return new Promise((resolve, reject) => {
+        //                 axios.get(`${urls.service}/customers/{value}`, authHeader()) 
+                            
+        //                     .then((res) => {
+        //                         resolve(true)
+        //                     })
+        //                     .catch((error) => {
+        //                         reject(new Error("Username is already taken"));
+        //                     })
+        //             })
+        //         }
+        //     ),
     email: string("Enter email")
         .required("Email is required"),
-    mobileNumber: string("Enter mobile number")
+    phoneNumber: string("Enter mobile number")
         .matches(phoneZero, 'Phone number is not valid')
         .matches(phoneRegExp, 'Phone number is not valid')
         .max(10, "Must be 10 digits")
@@ -42,3 +55,4 @@ export const formSchema = object({
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
         .required("Confirm Password is required")
 });
+

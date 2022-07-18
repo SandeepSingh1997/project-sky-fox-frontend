@@ -1,7 +1,7 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect} from "react";
 import {Form, Formik} from "formik";
 import {FormikTextField, FormikPasswordField} from "../formik";
-import {Button, Snackbar} from "@material-ui/core";
+import {Button} from "@material-ui/core";
 import styles from "./styles/SignupStyles";
 import PropTypes from "prop-types";
 import useSignup from "./hooks/useSignup";
@@ -13,7 +13,7 @@ const Signup = ({location, history, isAuthenticated, onSignup}) => {
 
   const classes = styles();
   const {from} = location.state || {from: {pathname: "/login"}};
-  const {successMessage, errorMessage, handleSignup} = useSignup(onSignup);
+  const {successMessage, errorMessage, handleSignup} = useSignup(onSignup, history);
 
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const Signup = ({location, history, isAuthenticated, onSignup}) => {
                                 <FormikTextField
                                     required
                                     margin="dense"
-                                    name="mobileNumber"
+                                    name="phoneNumber"
                                     label="Mobile Number"
                                 />
                                 <FormikPasswordField
@@ -68,9 +68,7 @@ const Signup = ({location, history, isAuthenticated, onSignup}) => {
                                     name="confirmPassword"
                                     label="Confirm Password"
                                 />
-                                {
-                                    errorMessage()
-                                }
+                                {errorMessage()}
                                 <a className={classes.removeUnderline} href="/login">
                                 <Button className={classes.signupButton}
                                     variant="contained"

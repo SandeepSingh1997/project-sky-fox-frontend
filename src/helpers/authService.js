@@ -1,12 +1,13 @@
 import axios from "axios";
 import {urls} from "../config/env-config";
-
+import apiService from "./apiService";
 const tokenKey = 'skyfox_token';
 
 export const authHeader = () => {
     return {
         headers: {
-            Authorization: 'Basic ' + localStorage.getItem(tokenKey)
+            "Authorization": "Basic " + localStorage.getItem(tokenKey),
+            // "Access-Control-Allow-Origin": "*",
         }
     };
 }
@@ -24,17 +25,25 @@ export const login = async (username, password) => {
     return userDetails;
 }
 
-export const signup = async (name, username, email, mobileNumber, password, confirmPassword) => {
-    const token = authBasic(name, username, email, mobileNumber, password, confirmPassword);
-    const config = {
-        headers: {
-            Authorization: 'Basic ' + token
+export const signup = async (name, email, phoneNumber, username,  password) => {
+    const data = {
+            name : name,
+            email : email,
+            phoneNumber : phoneNumber,
+            username: username,
+            password: password
         }
-    };
-    const response = await axios.get(`${urls.service}/Signup`, config);
-    const userDetails = response.data;
-    localStorage.setItem(tokenKey, token)
-    return userDetails;
+
+    const params = new URLSearchParams();
+    params.append('name', name);
+    params.append('email', email);
+    params.append('phoneNumber', phoneNumber);
+    params.append('username', username);
+    params.append('password', password);
+    console.log(params);
+
+    const response = await apiService.post("customers", data);
+    return response;
 }
 
 export const isLoggedIn = () => {
@@ -52,3 +61,4 @@ export const logout = () => {
 const authBasic = (username, password) => {
     return window.btoa(username + ':' + password);
 }
+

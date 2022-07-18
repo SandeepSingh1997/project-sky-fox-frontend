@@ -15,7 +15,7 @@ const promiseWithErrorHandling = (promise) => {
 
 export default {
     post: async (path, payload) => {
-        return promiseWithErrorHandling(axios.post(`${urls.service}/${path}`, payload, authHeader()));
+        return promiseWithErrorHandling(axios.post(`${urls.service}/${path}`, payload), authHeader());
     },
 
     get: async (path) => {
@@ -23,7 +23,7 @@ export default {
     },
 
     postWithoutErrorHandling: async (path, payload) => {
-        return axios.post(`${urls.service}/${path}`, payload, authHeader())
+        return axios.post(`${urls.service}/${path}`, payload, authHeader());
     },
 
     put: async (path, payload) => {

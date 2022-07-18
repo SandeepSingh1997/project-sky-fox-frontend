@@ -83,15 +83,15 @@ describe("Basic logic", () => {
     // it("should signup successfuly", async () => {
     //     const testName = "testName";
     //     const testUsername = "testUsername";
-    //     const testEmail = "testEmail";
-    //     const testmobileNumber = "testmobileNumber";
+    //     const testEmail = "testEmail@email.com";
+    //     const testmobileNumber = "1234567891";
     //     const testPassword = "testPassword";
-    //     const testconfirmPassword = "testconfirmPassword";
+    //     const testconfirmPassword = "testPassword";
         
     //     isSignedUp.mockReturnValue(true);
     //     const renderHookResult = renderHook(() => useAuth());
     //     const {result} = renderHookResult;
-    //     when(signup).calledWith(testName, testUsername, testEmail, testmobileNumber, testPassword, testconfirmPassword).mockResolvedValue("userDetails");
+    //     when(signup).calledWith(testName, testUsername, testEmail, testmobileNumber, testPassword).mockResolvedValue("userDetails");
 
     //     const {handleSignup} = result.current;
 

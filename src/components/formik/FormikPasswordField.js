@@ -4,7 +4,6 @@ import {
   TextField,
   IconButton,
   InputAdornment,
-  Input,
 } from "@material-ui/core";
 import { VisibilityOff, Visibility } from "@material-ui/icons";
 

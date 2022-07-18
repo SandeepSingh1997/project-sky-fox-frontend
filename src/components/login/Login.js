@@ -58,7 +58,7 @@ const Login = ({location, history, isAuthenticated, onLogin}) => {
                                 >
                                     Login
                                 </Button>
-                                <span className={classes.signupToCentre}>New to Skyfox?<a href="/Signup" className={classes.removeUnderline}>Signup here</a></span> 
+                                <span className={classes.signupToCentre}>New to Skyfox?<a href="/signup" className={classes.removeUnderline}>Signup here</a></span> 
                             </Form>
                         );
                     }

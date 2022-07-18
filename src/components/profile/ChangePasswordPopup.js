@@ -2,7 +2,7 @@ import { Form, Formik } from "formik";
 import { FormikPasswordField } from "../formik";
 import { Button, Dialog, DialogTitle, Snackbar } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
-import React, { useState, ReactDOM } from "react";
+import React, { useState } from "react";
 import changePasswordPopupService from "./services/changePasswordPopUpService";
 import {
   formSchema,
@@ -94,6 +94,7 @@ export default function ChangePasswordPopup(props) {
                 variant="contained"
                 type="submit"
                 color="primary"
+                disabled={!isValid}
               >
                 Submit
               </Button>

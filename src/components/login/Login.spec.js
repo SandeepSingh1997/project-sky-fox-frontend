@@ -78,6 +78,6 @@ describe("Basic Rendering", () => {
     const textElement = screen.getByText(/^New to Skyfox\?$/i);
     const linkEl = screen.getByRole("link", { name: "Signup here" });
     expect(textElement).toBeInTheDocument();
-    expect(linkEl).toHaveAttribute("href", "/Signup");
+    expect(linkEl).toHaveAttribute("href", "/signup");
   });
 });
