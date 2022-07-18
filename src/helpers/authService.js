@@ -3,6 +3,7 @@ import {urls} from "../config/env-config";
 import apiService from "./apiService";
 const tokenKey = 'skyfox_token';
 
+
 export const authHeader = () => {
     return {
         headers: {
@@ -26,6 +27,7 @@ export const login = async (username, password) => {
 }
 
 export const signup = async (name, email, phoneNumber, username,  password) => {
+ 
     const data = {
             name : name,
             email : email,
@@ -50,9 +52,6 @@ export const isLoggedIn = () => {
     return localStorage.getItem(tokenKey) !== null;
 }
 
-export const isSignedUp = () => {
-    return localStorage.getItem(tokenKey) !== null;
-}
 
 export const logout = () => {
     localStorage.removeItem(tokenKey);

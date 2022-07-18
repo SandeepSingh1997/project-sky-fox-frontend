@@ -1,10 +1,12 @@
 import axios from "axios";
 import {when} from "jest-when";
 import {urls} from "../config/env-config";
-import {authHeader, isLoggedIn, login, logout, signup, isSignedUp} from "./authService";
+import apiService from "./apiService";
+import {authHeader, isLoggedIn, login, logout, signup} from "./authService";
 
 jest.mock("axios", () => ({
     get: jest.fn(),
+    post: jest.fn()
 }));
 
 describe("Basic logic", () => {
@@ -104,23 +106,23 @@ describe("Basic logic", () => {
         expect(localStorage.getItem("skyfox_token")).toBe(null);
     });
 
-    // it("should return if user is signed up successfully", async () => {
-    //     const data = {
-    //         name: testName,
-    //         email: testEmail,
-    //         phoneNumber: testphoneNumber,
-    //         username: testUsername,
-    //         password: testPassword
-    //     }
+    it("should return if user is signed up successfully", async () => {
+        const data = {
+            name: testName,
+            email: testEmail,
+            phoneNumber: testphoneNumber,
+            username: testUsername,
+            password: testPassword
+        }
         
-    //     when(axios.post)
-    //         .calledWith(`${urls.service}/customers`, data)
-    //         .mockResolvedValue("unused");
+        when(axios.post)
+            .calledWith(`${urls.service}/customers`, data)
+            .mockResolvedValue("unused");
 
-    //     await signup(testName, testEmail, testphoneNumber, testUsername, testPassword);
-    //     expect(isSignedUp).toBe(true);
+        const response = await signup(testName, testEmail, testphoneNumber, testUsername, testPassword);
+        expect(response).toBe("unused");
 
-    // })
+    })
 
     afterEach(() => {
         localStorage.removeItem("skyfox_token");

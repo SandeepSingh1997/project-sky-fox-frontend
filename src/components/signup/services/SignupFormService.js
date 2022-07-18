@@ -21,20 +21,6 @@ export const formSchema = object({
         .required("Name is required"),
     username: string("Enter username") 
         .required("Username is required"),
-        // .test('Unique Username', 'Username already exists',
-        //         function (value) {
-        //             return new Promise((resolve, reject) => {
-        //                 axios.get(`${urls.service}/customers/{value}`, authHeader()) 
-                            
-        //                     .then((res) => {
-        //                         resolve(true)
-        //                     })
-        //                     .catch((error) => {
-        //                         reject(new Error("Username is already taken"));
-        //                     })
-        //             })
-        //         }
-        //     ),
     email: string("Enter email")
         .required("Email is required"),
     phoneNumber: string("Enter mobile number")
