@@ -6,4 +6,6 @@ fileignoreconfig:
   checksum: fbdbde545e101c7f7bea277eac83ce6caf53d1daaf2a03c7487b5dbe0a7491b1
 - filename: src/components/profile/Profile.js
   checksum: 179988a9f86c85d2d7e22d9390f283fe54527d36a77d01de82fcd900731b50cd
+- filename: src/components/shows/Shows.js
+  checksum: b93f933f95579a6dd05c8d72d1a1bd52d2b9cb4daf72782782ff42053f4f7023
 version: ""

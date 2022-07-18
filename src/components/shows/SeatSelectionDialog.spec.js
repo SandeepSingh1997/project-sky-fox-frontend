@@ -6,6 +6,13 @@ jest.mock("./CustomerDetailsDialog", () => {
     return ({open}) => <div>Customer Details is {open ? "open" : "closed"}</div>
 });
 
+jest.mock('../common/hooks/useFeatureTogglz', () => ({
+    __esModule: true,
+    default: jest.fn(() => {
+        return {features: {SHOW_IMDB_RATING_FOR_MOVIE_FEATURE: true}};
+    })
+}));
+
 describe("Basic rendering and functionality", () => {
     const openDialog = true;
     const onClose = jest.fn();

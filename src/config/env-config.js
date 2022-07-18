@@ -53,6 +53,6 @@ export const urls = {
     service: serviceUrl()
 };
 
-export const featureToggles = {
-    dummy: true
+export const featureNames = {
+    SHOW_IMDB_RATING_FOR_MOVIE_FEATURE: "SHOW_IMDB_RATING_FOR_MOVIE_FEATURE",
 };

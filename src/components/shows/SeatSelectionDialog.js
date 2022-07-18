@@ -6,6 +6,9 @@ import CustomerDetailsDialog from "./CustomerDetailsDialog";
 import { INR_SYMBOL } from "../../Constants";
 import PropTypes from "prop-types";
 import MoviePosterDialog from "./MoviePosterDialog";
+import { FeatureToggleProvider, FeatureToggle } from "react-feature-toggles";
+import { featureNames } from "../../config/env-config";
+import useFeatureTogglz from '../common/hooks/useFeatureTogglz';
 
 const SeatSelectionDialog = ({ selectedShow, updateShowsRevenue, open, onClose }) => {
     const [showCustomerDetails, setShowCustomerDetails] = useState(false);
@@ -13,6 +16,8 @@ const SeatSelectionDialog = ({ selectedShow, updateShowsRevenue, open, onClose }
     const [seats, setSeats] = useState("1");
     const [selectedMovie, setSelectedMovie] = useState({});
     const classes = styles();
+    const { features } = useFeatureTogglz();
+
 
     const handleClose = () => {
         setSeats("1");
@@ -21,6 +26,7 @@ const SeatSelectionDialog = ({ selectedShow, updateShowsRevenue, open, onClose }
 
     return (
         <>
+            <FeatureToggleProvider featureToggleList={features}>
             <Dialog open={open} onClose={handleClose} fullWidth classes={{
                 paper: classes.dialogRoot
             }}>
@@ -47,9 +53,11 @@ const SeatSelectionDialog = ({ selectedShow, updateShowsRevenue, open, onClose }
                             <Typography variant="subtitle2" color="primary" className={classes.movieMarquee}>
                                 {selectedShow.movie.duration}
                             </Typography>
-                            <Typography className={classes.imdbSelector}>
-                                IMDb rating: {selectedShow.movie.imdbRating}
-                            </Typography>
+                            <FeatureToggle featureName={featureNames.SHOW_IMDB_RATING_FOR_MOVIE_FEATURE}>
+                                <Typography className={classes.imdbSelector}>
+                                    IMDb rating: {selectedShow.movie.imdbRating}
+                                </Typography>
+                            </FeatureToggle>
                             <div className={classes.dialogBottom}>
                                 <div className={classes.seatsAndAmount}>
                                     <div className={classes.seatsSelector}>
@@ -83,6 +91,7 @@ const SeatSelectionDialog = ({ selectedShow, updateShowsRevenue, open, onClose }
                 setShowMoviePoster(false)
 
             }} />
+            </FeatureToggleProvider>
         </>
     );
 }

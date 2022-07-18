@@ -29,6 +29,13 @@ jest.mock("./SeatSelectionDialog", () => {
     return () => <div>SeatSelection</div>;
 });
 
+jest.mock('../common/hooks/useFeatureTogglz', () => ({
+    __esModule: true,
+    default: jest.fn(() => {
+        return {features: {SHOW_IMDB_RATING_FOR_MOVIE_FEATURE: true}};
+    })
+}));
+
 describe("Basic rendering and functionality", () => {
     let testHistory;
     let testLocation;
