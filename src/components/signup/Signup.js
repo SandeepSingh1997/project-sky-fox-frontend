@@ -21,6 +21,8 @@ const Signup = ({location, history, isAuthenticated, onSignup}) => {
         history.replace(from);
     }
   });
+
+  
   
 
   return (
@@ -69,7 +71,7 @@ const Signup = ({location, history, isAuthenticated, onSignup}) => {
                                     label="Confirm Password"
                                 />
                                 {errorMessage()}
-                                <a className={classes.removeUnderline} href="/login">
+
                                 <Button className={classes.signupButton}
                                     variant="contained"
                                     type="submit"
@@ -77,7 +79,7 @@ const Signup = ({location, history, isAuthenticated, onSignup}) => {
                                     color="primary"
                                 >
                                 Signup 
-                                </Button></a>
+                                </Button>
                             </Form>
                         );
                     }
