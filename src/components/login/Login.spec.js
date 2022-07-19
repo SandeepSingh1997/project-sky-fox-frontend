@@ -17,7 +17,12 @@ jest.mock("./services/loginFormService", () => ({
   initialValues: "initialValues",
   formSchema: "formSchema",
 }));
-
+jest.mock('../common/hooks/useFeatureTogglz', () => ({
+  __esModule: true,
+  default: jest.fn(() => {
+      return {features: {CUSTOMER_SIGNUP_FEATURE: true}};
+  })
+}));
 describe("Basic Rendering", () => {
   const testOnLogin = jest.fn();
   const testHandleLogin = jest.fn();

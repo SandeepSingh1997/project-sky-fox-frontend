@@ -7,11 +7,16 @@ import PropTypes from "prop-types";
 import useLogin from "./hooks/useLogin";
 import {formSchema, initialValues} from "./services/loginFormService";
 
+import { FeatureToggleProvider, FeatureToggle } from "react-feature-toggles";
+import { featureNames } from "../../config/env-config";
+import useFeatureTogglz from '../common/hooks/useFeatureTogglz';
+
 const Login = ({location, history, isAuthenticated, onLogin}) => {
     const classes = styles();
     let {from} = location.state || {from: {pathname: "/"}};
 
 
+    const {features} = useFeatureTogglz();
     const {errorMessage, handleLogin} = useLogin(onLogin, history);
 
 
@@ -22,6 +27,7 @@ const Login = ({location, history, isAuthenticated, onLogin}) => {
     });
 
     return (
+        <FeatureToggleProvider featureToggleList={features}>
         <div className={classes.loginContainer}>
             <Formik initialValues={initialValues}
                     onSubmit={handleLogin}
@@ -58,7 +64,9 @@ const Login = ({location, history, isAuthenticated, onLogin}) => {
                                 >
                                     Login
                                 </Button>
-                                <span className={classes.signupToCentre}>New to Skyfox?<a href="/signup" className={classes.removeUnderline}>&nbsp;Signup here</a></span> 
+                                <FeatureToggle featureName={featureNames.CUSTOMER_SIGNUP_FEATURE}>
+                                    <span className={classes.signupToCentre}>New to Skyfox?<a href="/signup" className={classes.removeUnderline}>&nbsp;Signup here</a></span> 
+                                </FeatureToggle>
                             </Form>
                         );
                     }
@@ -66,6 +74,7 @@ const Login = ({location, history, isAuthenticated, onLogin}) => {
             </Formik>
             
         </div>
+        </FeatureToggleProvider>
     );
 }
 
