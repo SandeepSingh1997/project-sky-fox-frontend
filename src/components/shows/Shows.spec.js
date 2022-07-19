@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useReducer } from "react";
 import {fireEvent, render} from "@testing-library/react";
 import Shows from "./Shows";
 import {when} from "jest-when";
@@ -6,8 +6,10 @@ import {dateFromSearchString, nextDateLocation, previousDateLocation} from "./se
 import useShows from "./hooks/useShows";
 import SeatSelectionDialog from "./SeatSelectionDialog";
 import useShowsRevenue from "./hooks/useShowsRevenue";
-import {shallow} from "enzyme";
+import {mount, shallow} from "enzyme";
 import ShowsRevenue from "./ShowsRevenue";
+import { AppContext } from "../layout/Layout";
+
 
 jest.mock("./services/dateService", () => ({
     dateFromSearchString: jest.fn(),
@@ -40,6 +42,8 @@ describe("Basic rendering and functionality", () => {
     let testHistory;
     let testLocation;
     let testShowDate;
+    const dispatch=jest.fn();
+    const state={userRole:"Admin"};
 
     beforeEach(() => {
         testHistory = {
@@ -81,7 +85,12 @@ describe("Basic rendering and functionality", () => {
     });
 
     it("Should display the show info", () => {
-        const shows = render(<Shows history={testHistory} location={testLocation}/>);
+        
+        const shows = render(
+        <AppContext.Provider value={{state,'':""}}>
+        <Shows history={testHistory} location={testLocation}/>
+        </AppContext.Provider>
+        );
 
         shows.getByText("Shows (Show Date)");
 
@@ -99,7 +108,12 @@ describe("Basic rendering and functionality", () => {
     });
 
     it("Should push to history if next or previous clicked", () => {
-        const shows = render(<Shows history={testHistory} location={testLocation}/>);
+        
+        const shows = render(
+        <AppContext.Provider value={{state,'':""}}>
+        <Shows history={testHistory} location={testLocation}/>
+        </AppContext.Provider>
+        );
 
         const previousDayButton = shows.getByText("Previous Day");
         const nextDayButton = shows.getByText("Next Day");
@@ -113,8 +127,13 @@ describe("Basic rendering and functionality", () => {
     });
 
     it("Should display seat selection when a show is selected", () => {
-        const {getByText, queryByText} = render(<Shows history={testHistory} location={testLocation}/>);
-
+        
+        const dispatch=jest.fn();
+        const {getByText,queryByText} = render(
+        <AppContext.Provider value={{state,dispatch}}>
+        <Shows history={testHistory} location={testLocation}/>
+        </AppContext.Provider>
+        );
         expect(queryByText("SeatSelectionDialog")).toBeNull();
 
         fireEvent.click(getByText("Movie 1"));
@@ -123,8 +142,12 @@ describe("Basic rendering and functionality", () => {
     });
 
     it("Should display revenue when rendered", () => {
-        const shows = shallow(<Shows history={testHistory} location={testLocation}/>);
-
+        
+        const shows = mount(
+        <AppContext.Provider value={{state,dispatch}}>
+        <Shows history={testHistory} location={testLocation}/>
+        </AppContext.Provider>
+        );
         const showsRevenue = shows.find(ShowsRevenue);
 
         expect(showsRevenue.prop("showsRevenue")).toBe(549.99);
@@ -132,7 +155,12 @@ describe("Basic rendering and functionality", () => {
     });
 
     it("Should display movie poster when rendered", () => {
-        const shows = shallow(<Shows history={testHistory} location={testLocation} />);
+        
+        const shows = mount(
+        <AppContext.Provider value={{state,dispatch}}>
+        <Shows history={testHistory} location={testLocation}/>
+        </AppContext.Provider>
+        );
 
         const moviePoster = shows.find('img');
 

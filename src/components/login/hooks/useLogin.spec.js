@@ -1,8 +1,9 @@
 import {act, renderHook} from "@testing-library/react-hooks";
 import useLogin from "./useLogin";
-import React from "react";
+import React, { useContext } from "react";
 import {when} from "jest-when";
 import {shallow} from "enzyme";
+import { AppContext } from "../../layout/Layout";
 
 const history = {replace: jest.fn()};
 describe("Basic logic", () => {
@@ -26,7 +27,17 @@ describe("Basic logic", () => {
     it("should not show error message if logged in succesfully", async () => {
         const testOnLogin = jest.fn();
         when(testOnLogin).calledWith(testUsername, testPassword).mockResolvedValue("Unused");
-        const renderHookResult = renderHook(() => useLogin(testOnLogin, history));
+        const state={userRole:"Admin"};
+        const dispatch=jest.fn();
+        const wrapper=({children})=>{
+           return (<AppContext.Provider value={{state,dispatch}}>
+                {children}
+            </AppContext.Provider>);
+        };
+        
+    
+        
+        const renderHookResult = renderHook(() => useLogin(testOnLogin, history),{wrapper:wrapper});
         const result = renderHookResult.result;
         const {handleLogin} = result.current;
 

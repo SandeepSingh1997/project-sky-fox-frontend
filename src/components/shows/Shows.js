@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {
     Backdrop,
     Button,
@@ -21,9 +21,15 @@ import SeatSelectionDialog from "./SeatSelectionDialog";
 import { FeatureToggleProvider, FeatureToggle } from "react-feature-toggles";
 import { featureNames } from "../../config/env-config";
 import useFeatureTogglz from '../common/hooks/useFeatureTogglz';
+import { AppContext } from "../layout/Layout";
 
 export default ({location, history}) => {
     const classes = styles();
+
+    const {state}=useContext(AppContext);
+    const role=state.userRole;
+
+    console.log(state);
 
     const { features } = useFeatureTogglz();
 
@@ -59,7 +65,8 @@ export default ({location, history}) => {
                     <Typography variant="h4" className={classes.showsHeader}>
                         Shows ({showsDate.format(HEADER_DATE_FORMAT)})
                     </Typography>
-                    <ShowsRevenue showsRevenue={showsRevenue} showsRevenueLoading={showsRevenueLoading}/>
+
+                  { role==='Admin' && <ShowsRevenue showsRevenue={showsRevenue} showsRevenueLoading={showsRevenueLoading}/>}
                 </div>
                 <List className={classes.listRoot}>
                     {
