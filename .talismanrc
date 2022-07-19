@@ -8,4 +8,6 @@ fileignoreconfig:
   checksum: 179988a9f86c85d2d7e22d9390f283fe54527d36a77d01de82fcd900731b50cd
 - filename: src/components/shows/Shows.js
   checksum: b93f933f95579a6dd05c8d72d1a1bd52d2b9cb4daf72782782ff42053f4f7023
+- filename: src/config/env-config.js
+  checksum: ef5ca1cd112bb8571d483a68d4ad4459214fd0ff652d2d8510abf02f7d78b944
 version: ""

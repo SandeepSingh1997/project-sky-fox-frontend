@@ -4,6 +4,13 @@ import Header from "./Header";
 import { Typography } from "@material-ui/core";
 import PersonIcon from "@material-ui/icons/Person";
 
+jest.mock('../common/hooks/useFeatureTogglz', () => ({
+  __esModule: true,
+  default: jest.fn(() => {
+      return {features: {CHANGE_PASSWORD_FOR_ADMIN_FEATURE: true}};
+  })
+}));
+
 describe("Basic rendering", () => {
   const testOnLogout = jest.fn();
 
