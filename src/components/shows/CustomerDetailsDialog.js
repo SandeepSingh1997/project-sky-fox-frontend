@@ -44,6 +44,7 @@ const CustomerDetailsDialog = ({seats, selectedShow, updateShowsRevenue, open, o
 
         try {
             const response = await bookingService.create(payload);
+            console.log(response);
             setSuccess(true);
             updateShowsRevenue();
             setBookingConfirmation(response.data)
@@ -97,7 +98,7 @@ const CustomerDetailsDialog = ({seats, selectedShow, updateShowsRevenue, open, o
                 </Formik>
             </Dialog>
 
-            <BookingConfirmation bookingConfirmation={bookingConfirmation} showConfirmation={showConfirmation} />
+            <BookingConfirmation onClose={()=> setShowConfirmation(false)} selectedShow={selectedShow} bookingConfirmation={bookingConfirmation} showConfirmation={showConfirmation} />
 
             <Snackbar open={success === false} autoHideDuration={2000} onClose={() => setSuccess(null)}>
                 <Alert severity="error">

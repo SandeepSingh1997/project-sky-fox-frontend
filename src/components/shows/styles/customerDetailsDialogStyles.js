@@ -16,6 +16,16 @@ export default makeStyles((theme) =>
         },
         bookShowButton: {
             margin: "16px 0px 15px 0px"
+        },
+        pdfLink: {
+            textDecoration: "none",
+        },
+
+        downloadButton: {
+            width: "100%",
+            display: "flex",
+            justifyContent:"center",
+            margin: "10px 0"
         }
     })
 );
