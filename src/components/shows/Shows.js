@@ -26,7 +26,6 @@ export default ({location, history}) => {
     const classes = styles();
 
     const {state}=useContext(AppContext);
-    console.log("Shows:",state);
     const role=state.user.role;
 
     const { features } = useFeatureTogglz();

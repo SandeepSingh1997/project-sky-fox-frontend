@@ -7,7 +7,7 @@ export default (onLogin, history) => {
   const classes = styles();
   const [showError, setShowError] = useState(false);
 
-  const { state, dispatch } = useContext(AppContext);
+  const { dispatch } = useContext(AppContext);
 
   const changeUser = (newValue) => {
     dispatch({ type: "UPDATE_INPUT", data: newValue });

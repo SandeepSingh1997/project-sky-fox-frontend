@@ -24,7 +24,7 @@ const SeatSelectionDialog = ({
   const { features } = useFeatureTogglz();
   const { state } = useContext(AppContext);
   const role = state.user.role;
-  console.log("SeatSelection:",state);
+
 
   const buttonelement =
     role === "Admin" ? (
