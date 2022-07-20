@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 import SeatSelectionDialog from "./SeatSelectionDialog";
-import { AppContext } from "../layout/Layout";
+import {AppContext} from "../../context/app-context";
 
 jest.mock("./CustomerDetailsDialog", () => {
   return ({ open }) => (

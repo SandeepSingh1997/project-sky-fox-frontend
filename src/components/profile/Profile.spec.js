@@ -1,10 +1,14 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import Profile from "./Profile";
+import {AppContext} from "../../context/app-context";
 
 describe("Basic Rendering", () => {
+  const dispatch = jest.fn();
+  const state = {user:{"id": "1", "role": "Admin"}};
+
   it("should render change password button", () => {
-    const profile = render(<Profile />);
+    const profile = render( <AppContext.Provider value={{ state, dispatch }}><Profile /></AppContext.Provider>);
 
     const button = profile.getByRole("button", { name: /change password/i });
 
@@ -12,7 +16,8 @@ describe("Basic Rendering", () => {
   });
 
   it("should open changePasswordPopup when click on change password button", () => {
-    render(<Profile />);
+    render( <AppContext.Provider value={{ state, dispatch }}><Profile /></AppContext.Provider>);
+
 
     const button = screen.getByRole("button", { name: /change password/i });
 

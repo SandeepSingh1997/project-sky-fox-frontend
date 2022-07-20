@@ -8,7 +8,7 @@ import SeatSelectionDialog from "./SeatSelectionDialog";
 import useShowsRevenue from "./hooks/useShowsRevenue";
 import {mount, shallow} from "enzyme";
 import ShowsRevenue from "./ShowsRevenue";
-import { AppContext } from "../layout/Layout";
+import {AppContext} from "../../context/app-context";
 
 
 jest.mock("./services/dateService", () => ({
@@ -87,7 +87,7 @@ describe("Basic rendering and functionality", () => {
     it("Should display the show info", () => {
         
         const shows = render(
-        <AppContext.Provider value={{state,'':""}}>
+        <AppContext.Provider value={{state,dispatch}}>
         <Shows history={testHistory} location={testLocation}/>
         </AppContext.Provider>
         );
@@ -110,7 +110,7 @@ describe("Basic rendering and functionality", () => {
     it("Should push to history if next or previous clicked", () => {
         
         const shows = render(
-        <AppContext.Provider value={{state,'':""}}>
+        <AppContext.Provider value={{state,dispatch}}>
         <Shows history={testHistory} location={testLocation}/>
         </AppContext.Provider>
         );

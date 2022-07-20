@@ -18,6 +18,7 @@ import Signup from "../signup/Signup";
 
 const RootRouter = ({ isAuthenticated, onLogin, onSignup, onLogout }) => {
   const todayDate = moment().format("YYYY-MM-DD");
+  
 
   return (
     <Router>

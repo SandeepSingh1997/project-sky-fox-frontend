@@ -21,12 +21,12 @@ import SeatSelectionDialog from "./SeatSelectionDialog";
 import { FeatureToggleProvider, FeatureToggle } from "react-feature-toggles";
 import { featureNames } from "../../config/env-config";
 import useFeatureTogglz from '../common/hooks/useFeatureTogglz';
-import { AppContext } from "../layout/Layout";
-
+import { AppContext } from "../../context/app-context";
 export default ({location, history}) => {
     const classes = styles();
 
     const {state}=useContext(AppContext);
+    console.log("Shows:",state);
     const role=state.user.role;
 
     const { features } = useFeatureTogglz();

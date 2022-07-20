@@ -3,7 +3,7 @@ import useLogin from "./useLogin";
 import React, { useContext } from "react";
 import {when} from "jest-when";
 import {shallow} from "enzyme";
-import { AppContext } from "../../layout/Layout";
+import {AppContext} from "../../../context/app-context";
 
 const history = {replace: jest.fn()};
 describe("Basic logic", () => {
@@ -14,10 +14,18 @@ describe("Basic logic", () => {
         username: testUsername,
         password: testPassword
     };
+    const state={user:{"id": "1", "role": "Admin"}};
+    const dispatch=jest.fn();
+    const wrapper=({children})=>{
+       return (<AppContext.Provider value={{state,dispatch}}>
+            {children}
+        </AppContext.Provider>);
+    };
+    
 
     it("should initially not show error message", () => {
         const testOnLogin = jest.fn();
-        const renderHookResult = renderHook(() => useLogin(testOnLogin, history));
+        const renderHookResult = renderHook(() => useLogin(testOnLogin, history),{wrapper:wrapper});
         const result = renderHookResult.result;
         const {errorMessage} = result.current;
 
@@ -27,14 +35,7 @@ describe("Basic logic", () => {
     it("should not show error message if signed up  succesfully", async () => {
         const testOnLogin = jest.fn();
         when(testOnLogin).calledWith(testUsername, testPassword).mockResolvedValue("Unused");
-        const state={user:{"id": "1", "role": "Admin"}};
-        const dispatch=jest.fn();
-        const wrapper=({children})=>{
-           return (<AppContext.Provider value={{state,dispatch}}>
-                {children}
-            </AppContext.Provider>);
-        };
-        
+   
     
         
         const renderHookResult = renderHook(() => useLogin(testOnLogin, history),{wrapper:wrapper});
@@ -56,7 +57,7 @@ describe("Basic logic", () => {
                 status: 401
             }
         });
-        const renderHookResult = renderHook(() => useLogin(testOnLogin, history));
+        const renderHookResult = renderHook(() => useLogin(testOnLogin, history),{wrapper:wrapper});
         const result = renderHookResult.result;
         const {handleLogin} = result.current;
 
@@ -73,7 +74,7 @@ describe("Basic logic", () => {
         const testOnLogin = jest.fn();
         const testError = "test error";
         when(testOnLogin).calledWith(testUsername, testPassword).mockRejectedValue(testError);
-        const renderHookResult = renderHook(() => useLogin(testOnLogin, history));
+        const renderHookResult = renderHook(() => useLogin(testOnLogin, history),{wrapper:wrapper});
         const result = renderHookResult.result;
         const {handleLogin} = result.current;
 

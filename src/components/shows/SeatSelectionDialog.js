@@ -9,8 +9,7 @@ import MoviePosterDialog from "./MoviePosterDialog";
 import { FeatureToggleProvider, FeatureToggle } from "react-feature-toggles";
 import { featureNames } from "../../config/env-config";
 import useFeatureTogglz from "../common/hooks/useFeatureTogglz";
-import { AppContext } from "../layout/Layout";
-
+import { AppContext } from "../../context/app-context";
 const SeatSelectionDialog = ({
   selectedShow,
   updateShowsRevenue,
@@ -25,6 +24,7 @@ const SeatSelectionDialog = ({
   const { features } = useFeatureTogglz();
   const { state } = useContext(AppContext);
   const role = state.user.role;
+  console.log("SeatSelection:",state);
 
   const buttonelement =
     role === "Admin" ? (

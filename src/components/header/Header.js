@@ -9,10 +9,12 @@ import { FeatureToggleProvider, FeatureToggle } from "react-feature-toggles";
 import { featureNames } from "../../config/env-config";
 import useFeatureTogglz from '../common/hooks/useFeatureTogglz';
 
+
 const Header = ({ onLogout, isAuthenticated }) => {
   const classes = styles();
 
   const { features } = useFeatureTogglz();
+
 
   const logoutSection = () => {
     if (isAuthenticated) {
@@ -30,9 +32,11 @@ const Header = ({ onLogout, isAuthenticated }) => {
   const profileSection = () => {
     if (isAuthenticated) {
       return (
-        <a href="/profile" className={classes.profileLink}>
+        
+        <a href="/profile" className={classes.profileLink} >
           <PersonIcon />
         </a>
+        
       );
     }
   };

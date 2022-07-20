@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { Button } from "@material-ui/core";
 import ChangePasswordPopup from "./ChangePasswordPopup";
-
 import styles from "./styles/profileStyles";
 
 const Profile = (props) => {
   const [changePasswordDialog, setChangePasswordDialog] = useState(false);
 
   const classes = styles();
-
   const handleDialogClose = () => {
     setChangePasswordDialog(false);
   };
