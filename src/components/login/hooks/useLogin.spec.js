@@ -24,7 +24,7 @@ describe("Basic logic", () => {
         expect(errorMessage()).toBe(undefined);
     });
 
-    it("should not show error message if logged in succesfully", async () => {
+    it("should not show error message if signed up  succesfully", async () => {
         const testOnLogin = jest.fn();
         when(testOnLogin).calledWith(testUsername, testPassword).mockResolvedValue("Unused");
         const state={userRole:"Admin"};

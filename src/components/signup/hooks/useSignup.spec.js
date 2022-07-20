@@ -32,4 +32,18 @@ describe("Basic logic", () => {
     });
 
 
+    // it("should show success message if signed up succesfully", async () => {
+    //     const testOnSignup = jest.fn();
+    //     when(testOnSignup).calledWith(testName, testEmail, testphoneNumber, testUsername, testPassword, testConfirmPassword).mockResolvedValue("Unused");
+    //     const renderHookResult = renderHook((status) => useSignup(testOnSignup, history));
+    //     const result = renderHookResult.result;
+    //     const {handleSignup} = result.current;
+
+    //     await act(() => handleSignup(SignupValues));
+    //     const {errorMessage} = result.current;
+    //     expect(errorMessage).toBeCalled();
+    //     // expect(screen.getByText("Successfully signed up")).toBeInTheDocument();
+    //     // expect(testOnSignup).toHaveBeenCalledWith(testName, testEmail, testphoneNumber, testUsername, testPassword, testConfirmPassword);
+    // });
+
 });

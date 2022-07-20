@@ -22,7 +22,7 @@ const Signup = ({location, history, isAuthenticated, onSignup}) => {
     }
   });
 
-  
+
   
 
   return (

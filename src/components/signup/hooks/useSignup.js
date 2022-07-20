@@ -59,14 +59,10 @@ export default (onSignup, history) => {
   const handleSignup =  async (values) => {
     const { name, email, phoneNumber, username, password, confirmPassword } = values;
 
-    let paswd =
-      /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
+    let paswd = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/;
 
     if (
-      !(phoneNumber.length === 10 && phoneNumber !== 0) &&
-      values.password.match(paswd) &&
-      password === confirmPassword
-    ) {
+      !(phoneNumber.length === 10 && phoneNumber !== 0) && password.match(paswd) && password === confirmPassword) {
       setShowError(true);
     }
 
@@ -78,6 +74,7 @@ export default (onSignup, history) => {
         username,
         password
       );
+      setShowError(false);
 
       if(response.status === 201){
         setToast({
@@ -91,8 +88,6 @@ export default (onSignup, history) => {
       }
       
     } catch (err) {
-      console.log(err);
-      console.log(err.response.status);
       if (err.response && err.response.status === 401) {
         setToast({
           message: err.response.data.message,
