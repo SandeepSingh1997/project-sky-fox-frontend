@@ -27,9 +27,7 @@ export default ({location, history}) => {
     const classes = styles();
 
     const {state}=useContext(AppContext);
-    const role=state.userRole;
-
-    console.log(state);
+    const role=state.user.role;
 
     const { features } = useFeatureTogglz();
 
@@ -66,7 +64,7 @@ export default ({location, history}) => {
                         Shows ({showsDate.format(HEADER_DATE_FORMAT)})
                     </Typography>
 
-                  { role==='Admin' && <ShowsRevenue showsRevenue={showsRevenue} showsRevenueLoading={showsRevenueLoading}/>}
+                  { role === 'Admin' && <ShowsRevenue showsRevenue={showsRevenue} showsRevenueLoading={showsRevenueLoading}/>}
                 </div>
                 <List className={classes.listRoot}>
                     {

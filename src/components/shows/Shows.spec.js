@@ -43,7 +43,7 @@ describe("Basic rendering and functionality", () => {
     let testLocation;
     let testShowDate;
     const dispatch=jest.fn();
-    const state={userRole:"Admin"};
+    const state={user:{"id": "1", "role": "Admin"}};
 
     beforeEach(() => {
         testHistory = {

@@ -1,4 +1,4 @@
-import React, {useState,useContext} from "react";
+import React, { useState, useContext } from "react";
 import { AppContext } from "../../layout/Layout";
 import Typography from "@material-ui/core/Typography";
 import styles from "../styles/loginStyles"
@@ -7,11 +7,11 @@ export default (onLogin, history) => {
     const classes = styles();
     const [showError, setShowError] = useState(false);
 
-    const {state,dispatch} = useContext(AppContext);
+    const { state, dispatch } = useContext(AppContext);
 
-    const changeUserRole = (newValue) => {
+    const changeUser = (newValue) => {
 
-        dispatch({ type: 'UPDATE_INPUT', data: newValue,});
+        dispatch({ type: 'UPDATE_INPUT', data: newValue });
     };
 
     const errorMessage = () => {
@@ -25,11 +25,10 @@ export default (onLogin, history) => {
     };
 
     const handleLogin = async (values) => {
-        const {username, password} = values;
+        const { username, password } = values;
         try {
-            const userDetails=await onLogin(username, password);
-            changeUserRole(userDetails.role);
-
+            const userDetails = await onLogin(username, password);
+            changeUser({"id": userDetails.id, "role": userDetails.role});
             setShowError(false);
             history.replace('/');
         } catch (err) {

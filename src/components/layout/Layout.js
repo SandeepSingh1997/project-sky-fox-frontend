@@ -9,7 +9,10 @@ export const AppContext = React.createContext("");
 
 const initialState = {
 
-    userRole: '',
+    user: {
+        "id": "", 
+        "role": ""
+    },
 
 };
 
@@ -17,7 +20,7 @@ function reducer(state, action) {
     switch (action.type) {
         case 'UPDATE_INPUT':
             return {
-                userRole: action.data
+                user: action.data
             };
 
 
@@ -30,7 +33,6 @@ export default () => {
     const classes = styles();
 
     const [state, dispatch] = useReducer(reducer, initialState);
-    console.log(dispatch);
 
     const {isAuthenticated, handleLogin, handleLogout, handleSignup} = useAuth();
 

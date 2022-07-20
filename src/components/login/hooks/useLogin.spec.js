@@ -27,7 +27,7 @@ describe("Basic logic", () => {
     it("should not show error message if signed up  succesfully", async () => {
         const testOnLogin = jest.fn();
         when(testOnLogin).calledWith(testUsername, testPassword).mockResolvedValue("Unused");
-        const state={userRole:"Admin"};
+        const state={user:{"id": "1", "role": "Admin"}};
         const dispatch=jest.fn();
         const wrapper=({children})=>{
            return (<AppContext.Provider value={{state,dispatch}}>

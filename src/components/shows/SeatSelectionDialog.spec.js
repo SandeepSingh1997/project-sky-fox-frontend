@@ -21,7 +21,7 @@ describe("Basic rendering and functionality", () => {
   const onClose = jest.fn();
   const updateShowRevenue = jest.fn();
   const dispatch = jest.fn();
-  const state = { userRole: "Admin" };
+  const state = {user:{"id": "1", "role": "Admin"}};
 
   const selectedShow = {
     id: 1,
