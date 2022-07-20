@@ -12,7 +12,6 @@ import styles from "./styles/changePasswordStyles";
 import { Close } from "@material-ui/icons";
 
 export default function ChangePasswordPopup(props) {
-
   const classes = styles();
   const [toast, setToast] = useState({
     status: false,
@@ -39,7 +38,7 @@ export default function ChangePasswordPopup(props) {
           severity: "success",
         });
         setTimeout(() => {
-          props.history.replace("/", "urlhistory")
+          props.history.replace("/", "urlhistory");
           props.onLogout();
         }, 2000);
       }
@@ -55,12 +54,17 @@ export default function ChangePasswordPopup(props) {
   };
 
   return (
-    <Dialog open={props.open} onClose={props.handleDialogClose} className={classes.dialog}>
+    <Dialog
+      open={props.open}
+      onClose={props.handleDialogClose}
+      className={classes.dialog}
+    >
       <DialogTitle className={classes.title}>
         Change Password{" "}
         <Close className={classes.close} onClick={props.handleDialogClose} />
       </DialogTitle>
       <Formik
+        enableReinitialize={true}
         initialValues={initialValues}
         validationSchema={formSchema}
         onSubmit={(values, actions) => {

@@ -4,17 +4,19 @@ export default makeStyles((theme) => ({
   form: {
     display: "flex",
     flexDirection: "column",
-    width: "20vw",
-    padding: "0 10% 10%",
+    width: "25vw",
+    padding: "0 5% 5%",
   },
   title: {
     textAlign: "center",
   },
   button: {
     marginTop: "10%",
+    width: "70%",
+    alignSelf: "center"
   },
   close: {
     position: "absolute",
-    margin: "0 0 0 15%",
+    margin: "1% 0 0 20%",
   },
 }));

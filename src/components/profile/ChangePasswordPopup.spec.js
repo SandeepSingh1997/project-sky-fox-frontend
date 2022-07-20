@@ -51,20 +51,4 @@ describe("Basic Render", () => {
 
     expect(handleClose).toHaveBeenCalledTimes(1);
   });
-/*
-  it("should throw success toast on successful login", async () => {
-   render(<ChangePasswordPopup open={true} handleDialogClose={handleClose}/>)
-   
-
-   await user.type(screen.getByLabelText(/current password/i), 'Varshni@123');
-   await user.type(screen.getByLabelText(/new password/i), 'Deepa@123');
-   await user.type(screen.getByLabelText(/confirm password/i), 'Deepa@123');
- 
-   await user.click(screen.getByRole('button', {name: /submit/i}));
-
-    expect(screen.getByText(/password changed successfully/i)).toBeDefined();
- 
- 
-  });
-*/
 });
