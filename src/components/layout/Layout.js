@@ -4,6 +4,7 @@ import Header from "../header/Header";
 import styles from "./styles/layoutStyles";
 import RootRouter from "../router/RootRouter";
 import useAuth from "./hooks/useAuth";
+import AppState from "../../context/AppState";
 
 export default () => {
   const classes = styles();
@@ -12,6 +13,7 @@ export default () => {
 
   return (
     <Box>
+       <AppState isAuthenticated={isAuthenticated}>
       <Header onLogout={handleLogout} isAuthenticated={isAuthenticated} />
       <Container maxWidth={false} className={classes.container}>
         <Card>
@@ -23,6 +25,8 @@ export default () => {
           />
         </Card>
       </Container>
+      </AppState>
     </Box>
+    
   );
 };

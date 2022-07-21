@@ -25,11 +25,14 @@ export default function AppState(props) {
 
   const [state, dispatch] = useReducer(reducer, initialState);
   useEffect(()=>{
-  
+  if(props.isAuthenticated){
     apiService.get("login").then((response)=>{
       dispatch({type:"UPDATE_INPUT",data:{id:response.data.id,role:response.data.role}});
     });
-  },[])
+  }else{
+    dispatch({type:""});
+  }
+  },[props.isAuthenticated]);
  
   return (
     <AppContext.Provider value={{ state, dispatch }}>

@@ -59,6 +59,7 @@ export default makeStyles((theme) =>
             padding: theme.spacing(2, 4, 3),
         },
         imdbSelector: {
+            display:'block',
             color: "#b3b3b3"
         }
     })

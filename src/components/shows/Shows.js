@@ -88,7 +88,7 @@ export default ({location, history}) => {
                                             </Typography>
 
                                             <FeatureToggle featureName={featureNames.SHOW_IMDB_RATING_FOR_MOVIE_FEATURE}>
-                                                <Typography className={classes.imdbSelector}>
+                                                <Typography component="span" className={classes.imdbSelector}>
                                                     IMDb Rating: {show.movie.imdbRating}
                                                 </Typography>
                                             </FeatureToggle>

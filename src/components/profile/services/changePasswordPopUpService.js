@@ -8,13 +8,13 @@ export const initialValues = {
 };
 
 const passwdD =
-  /^(?=.*[0-9])[a-zA-Z0-9!"#$%&'()*+,-.\\\/:;<=>?@[\]^_`{|}~]{8,16}$/;
+  /^(?=.*[0-9])[a-zA-Z0-9!"#$%&'()*+,-.\\/:;<=>?@[\]^_`{|}~]{8,16}$/;
 const passwdSpl =
-  /^(?=.*[!"#$%&'()*+,-.\\\/:;<=>?@[\]^_`{|}~])[a-zA-Z0-9!"#$%&'()*+,-.\\\/:;<=>?@[\]^_`{|}~]{8,16}$/;
+  /^(?=.*[!"#$%&'()*+,-.\\/:;<=>?@[\]^_`{|}~])[a-zA-Z0-9!"#$%&'()*+,-.\\/:;<=>?@[\]^_`{|}~]{8,16}$/;
 const passwdUp =
-  /^(?=.*[A-Z])[a-zA-Z0-9!"#$%&'()*+,-.\\\/:;<=>?@[\]^_`{|}~]{8,16}$/;
+  /^(?=.*[A-Z])[a-zA-Z0-9!"#$%&'()*+,-.\\/:;<=>?@[\]^_`{|}~]{8,16}$/;
 const passwdLow =
-  /^(?=.*[a-z])[a-zA-Z0-9!"#$%&'()*+,-.\\\/:;<=>?@[\]^_`{|}~]{8,16}$/;
+  /^(?=.*[a-z])[a-zA-Z0-9!"#$%&'()*+,-.\\/:;<=>?@[\]^_`{|}~]{8,16}$/;
 
 
 export const formSchema = object().shape({
@@ -40,7 +40,7 @@ export const formSchema = object().shape({
         flag = true;
       }
       if (!passwdLow.test(value)) {
-        let index = errors.findIndex((value)=> value == " uppercase letter")
+        let index = errors.findIndex((value)=> value === " uppercase letter")
         if(index)
           errors[index] = " uppercase";
         errors.push(" lowercase letter");
@@ -48,9 +48,9 @@ export const formSchema = object().shape({
       }
 
       errors.forEach((val, index)=>{
-        if(index==1)
+        if(index===1)
           val = " a" + val;
-        else if(index==errors.length-1 && index>1)
+        else if(index===errors.length-1 && index>1)
           val = " and" + val;
         else if(index<errors.length-1 && index>1)
           val = "," + val;
@@ -87,7 +87,7 @@ export const formSchema = object().shape({
         flag = true;
       }
       if (!passwdLow.test(value)) {
-        let index = errors.findIndex((value)=> value == " uppercase letter")
+        let index = errors.findIndex((value)=> value === " uppercase letter")
         if(index)
           errors[index] = " uppercase";
         errors.push(" lowercase letter");
@@ -95,9 +95,9 @@ export const formSchema = object().shape({
       }
 
       errors.forEach((val, index)=>{
-        if(index==1)
+        if(index===1)
           val = " a" + val;
-        else if(index==errors.length-1 && index>1)
+        else if(index===errors.length-1 && index>1)
           val = " and" + val;
         else if(index<errors.length-1 && index>1)
           val = "," + val;
@@ -135,7 +135,7 @@ export const formSchema = object().shape({
         flag = true;
       }
       if (!passwdLow.test(value)) {
-        let index = errors.findIndex((value)=> value == " uppercase letter")
+        let index = errors.findIndex((value)=> value === " uppercase letter")
         if(index)
           errors[index] = " uppercase";
         errors.push(" lowercase letter");
@@ -143,9 +143,9 @@ export const formSchema = object().shape({
       }
 
       errors.forEach((val, index)=>{
-        if(index==1)
+        if(index===1)
           val = " a" + val;
-        else if(index==errors.length-1 && index>1)
+        else if(index===errors.length-1 && index>1)
           val = " and" + val;
         else if(index<errors.length-1 && index>1)
           val = "," + val;
