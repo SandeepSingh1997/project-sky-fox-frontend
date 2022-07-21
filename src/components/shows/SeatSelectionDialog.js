@@ -9,7 +9,12 @@ import MoviePosterDialog from "./MoviePosterDialog";
 import { FeatureToggleProvider, FeatureToggle } from "react-feature-toggles";
 import { featureNames } from "../../config/env-config";
 import useFeatureTogglz from "../common/hooks/useFeatureTogglz";
-import { AppContext } from "../../context/app-context";
+// import { AppContext } from "../../context/app-context";
+import { AppContext } from "../layout/Layout";
+import BookingConfirmation from "./BookingConfirmation";
+import bookingService from "./services/bookingService";
+import moment from "moment";
+
 const SeatSelectionDialog = ({
   selectedShow,
   updateShowsRevenue,
@@ -17,6 +22,9 @@ const SeatSelectionDialog = ({
   onClose,
 }) => {
   const [showCustomerDetails, setShowCustomerDetails] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [success, setSuccess] = useState(null);
+  const [bookingConfirmation, setBookingConfirmation] = useState({});
   const [showMoviePoster, setShowMoviePoster] = useState(false);
   const [seats, setSeats] = useState("1");
   const [selectedMovie, setSelectedMovie] = useState({});
@@ -40,11 +48,13 @@ const SeatSelectionDialog = ({
         Next
       </Button>
     ) : (
+      
       <Button
         variant="contained"
         color="primary"
         onClick={() => {
-          setShowCustomerDetails(true);
+          setShowConfirmation(true);
+          bookShow();
           onClose();
         }}
         className={classes.dialogButton}
@@ -56,6 +66,32 @@ const SeatSelectionDialog = ({
   const handleClose = () => {
     setSeats("1");
     onClose();
+  };
+
+    const bookShow = async (values) => {
+      const today = moment().format("YYYY-MM-DD");
+      const payload = {
+          date: today,
+          showId: selectedShow.id,
+          movieAudience: {
+              name: 'dummy', //need name
+              phoneNumber: 'dummy' // need phoneNumber
+          },
+          noOfSeats: seats
+      };
+
+      try {
+          const response = await bookingService.create(payload);
+          console.log(response.data + "SeatSelectionDialog");
+          setSuccess(true);
+          updateShowsRevenue();
+          setBookingConfirmation(response.data)
+          setShowConfirmation(true);
+      } catch {
+          setSuccess(false);
+      } finally {
+          onClose();
+      }
   };
 
   return (
@@ -144,7 +180,18 @@ const SeatSelectionDialog = ({
             setShowMoviePoster(false);
           }}
         />
+        <BookingConfirmation
+        seats={seats}
+        onClose={() => {
+          handleClose();
+          setShowConfirmation(false);
+        }}
+        selectedShow={selectedShow}
+        bookingConfirmation={bookingConfirmation}
+        showConfirmation={showConfirmation}
+      />
       </FeatureToggleProvider>
+      
     </>
   );
 };

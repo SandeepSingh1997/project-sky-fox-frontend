@@ -4,11 +4,14 @@ import Alert from "@material-ui/lab/Alert/Alert";
 import styles from "./styles/customerDetailsDialogStyles"
 import BookingConfirmationPdf from "./BookingConfirmationPdf";
 import { PDFDownloadLink } from '@react-pdf/renderer';
+import { INR_SYMBOL } from "../../Constants";
 
-const BookingConfirmation = ({onClose, selectedShow, bookingConfirmation, showConfirmation}) => {
+const BookingConfirmation = ({seats, onClose, selectedShow, bookingConfirmation, showConfirmation}) => {
+  console.log(seats + " BookingConfirmation");
     const [showBookingInformationPdf, setShowBookingInformationPdf] = useState(false);
 
     const classes = styles();
+
     return (
       <Dialog open={showConfirmation} onClose={onClose}>
         <Alert severity="success">Seats booked successfully!</Alert>
@@ -19,28 +22,28 @@ const BookingConfirmation = ({onClose, selectedShow, bookingConfirmation, showCo
         <Typography variant="body1" display="block" gutterBottom>
             Customer Name: {bookingConfirmation.customerName}
           </Typography>
-          <Typography variant="body1" display="block" gutterBottom>
+           { bookingConfirmation.email!= null ? <Typography variant="body1" display="block" gutterBottom>
             Email: {bookingConfirmation.email}
-          </Typography>
+          </Typography> : "" } 
           <Typography variant="body1" display="block" gutterBottom>
-            Number of seats booked: {bookingConfirmation.noOfSeats}
+            Number of seats booked: {seats}
           </Typography>
           <Typography variant="body1" display="block" gutterBottom>
             Movie Name: {selectedShow.movie.name}
           </Typography>
           <Typography variant="body1" display="block" gutterBottom>
-            Amount Paid:  &#8377;{bookingConfirmation.amountPaid}
+            Amount Paid: {INR_SYMBOL}{(selectedShow.cost * seats).toFixed(2)}
           </Typography>
           <Typography variant="body1" display="block" gutterBottom>
-            Show Date: {bookingConfirmation.showDate}
-          </Typography>
+            Show Date: {selectedShow.date}
+          </Typography> 
           <Typography variant="body1" display="block" gutterBottom>
             Show Time: {selectedShow.slot.startTime}
           </Typography>
           <Typography variant="body1" display="block" gutterBottom>
             Payment Mode: Cash at Counter
           </Typography>
-          <PDFDownloadLink className={classes.pdfLink} document={<BookingConfirmationPdf selectedShow={selectedShow} bookingConfirmation={bookingConfirmation} showPdf={showBookingInformationPdf}/>} fileName="MovieTicket">
+          <PDFDownloadLink className={classes.pdfLink} document={<BookingConfirmationPdf seats={seats} selectedShow={selectedShow} bookingConfirmation={bookingConfirmation} showPdf={showBookingInformationPdf}/>} fileName="MovieTicket">
               {({loading}) => (loading ? <Button> Loading Document...</Button> :
           <div className={classes.downloadButton}><Button
             variant="contained"

@@ -5,10 +5,12 @@ import { Snackbar } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 
 
+
 export default (onSignup, history) => {
   const classes = styles();
   const [showError, setShowError] = useState(false);
   // const [toastOpen, setToastOpen] = useState(false);
+  const [showUsernameError, setShowUsernameError] = useState(false);
   const [toast, setToast] = useState({
     status: false,
     message: "",
@@ -56,6 +58,8 @@ export default (onSignup, history) => {
     }
   };
 
+
+
   const handleSignup =  async (values) => {
     const { name, email, phoneNumber, username, password, confirmPassword } = values;
 
@@ -96,6 +100,7 @@ export default (onSignup, history) => {
         });
       }
       if (err.response && err.response.status === 400) {
+        setShowUsernameError(true);
         setToast({
             message: "Username already exists",
             status: true,
@@ -112,6 +117,8 @@ export default (onSignup, history) => {
     errorMessage: errorMessage,
     handleSignup: handleSignup,
     successMessage: successMessage,
+    usernameError: showUsernameError
   };
 }
+
 

@@ -17,8 +17,6 @@ export default makeStyles((theme) =>
             marginTop: "15px",
             display: "flex",
             textAlign: "center",
-            // width: "200px",
-            // marginLeft: "100px"
         },
         signupErrorMessage: {
             marginTop: "8px"

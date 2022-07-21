@@ -12,6 +12,7 @@ import FormikTextField from "../formik/FormikTextField";
 import BookingConfirmation from "./BookingConfirmation";
 
 const CustomerDetailsDialog = ({seats, selectedShow, updateShowsRevenue, open, onClose}) => {
+    console.log(seats);
     const [success, setSuccess] = useState(null);
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [bookingConfirmation, setBookingConfirmation] = useState({});
@@ -44,10 +45,12 @@ const CustomerDetailsDialog = ({seats, selectedShow, updateShowsRevenue, open, o
 
         try {
             const response = await bookingService.create(payload);
+            console.log(response.data);
             console.log(response);
             setSuccess(true);
             updateShowsRevenue();
             setBookingConfirmation(response.data)
+            console.log(seats);
             setShowConfirmation(true);
         } catch {
             setSuccess(false);
@@ -98,7 +101,7 @@ const CustomerDetailsDialog = ({seats, selectedShow, updateShowsRevenue, open, o
                 </Formik>
             </Dialog>
 
-            <BookingConfirmation onClose={()=> setShowConfirmation(false)} selectedShow={selectedShow} bookingConfirmation={bookingConfirmation} showConfirmation={showConfirmation} />
+            <BookingConfirmation seats={seats} onClose={()=> setShowConfirmation(false)} selectedShow={selectedShow} bookingConfirmation={bookingConfirmation} showConfirmation={showConfirmation} />
 
             <Snackbar open={success === false} autoHideDuration={2000} onClose={() => setSuccess(null)}>
                 <Alert severity="error">

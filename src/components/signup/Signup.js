@@ -23,8 +23,6 @@ const Signup = ({location, history, isAuthenticated, onSignup}) => {
   });
 
 
-  
-
   return (
     <div className={classes.signupContainer}>
             <Formik initialValues={initialValues}
