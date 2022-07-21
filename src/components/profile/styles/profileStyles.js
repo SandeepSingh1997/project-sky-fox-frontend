@@ -1,11 +1,17 @@
-import {makeStyles} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) =>
-    ({
-        button:{
-            margin:"5% 2% 2%",
-            backgroundColor: theme.palette.primary.main,
-            color: theme.palette.primary.contrastText
-        }
-    })
+({
+    button: {
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.primary.contrastText
+    },
+    para: {
+        fontSize: "16px",
+        fontWeight: "400"
+    },
+    heading: {
+        fontWeight: "bold"
+    }
+})
 );

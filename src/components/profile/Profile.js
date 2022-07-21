@@ -1,7 +1,10 @@
-import React, { useState } from "react";
-import { Button } from "@material-ui/core";
+import React, { useState, useContext, useEffect } from "react";
+import { Button, Box } from "@material-ui/core";
 import ChangePasswordPopup from "./ChangePasswordPopup";
 import styles from "./styles/profileStyles";
+import { AppContext } from "../../context/app-context";
+import profileServices from "./services/profileServices";
+import UserProfile from "./UserProfile";
 
 const Profile = (props) => {
   const [changePasswordDialog, setChangePasswordDialog] = useState(false);
@@ -11,8 +14,22 @@ const Profile = (props) => {
     setChangePasswordDialog(false);
   };
 
+  const { state } = useContext(AppContext);
+
+  const [userDetails, setUserDetails] = useState({ "name": "", "username": "", "email": "", "mobile": "" });
+
+  useEffect(() => {
+    if (state.user.role === "Customer") {
+      profileServices.getUserDetails(state.user.id).then(userDetails => {
+        setUserDetails(userDetails);
+      })
+    }
+  }, [state]);
   return (
-    <div>
+    <Box m={3}>
+      {state.user.role === "Customer" ? (
+        <UserProfile userDetails={userDetails} />
+      ) : null}
       <Button
         variant="contained"
         onClick={() => {
@@ -30,7 +47,7 @@ const Profile = (props) => {
           {...props}
         />
       )}
-    </div>
+    </Box>
   );
 };
 
