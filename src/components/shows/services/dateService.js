@@ -32,3 +32,7 @@ const locationWithFormattedDate = (currentLocation, previousDateLocationFormatte
         search: `?date=${previousDateLocationFormatted}`
     };
 }
+
+export const isValidDate=(date)=>{
+    return moment().diff(date,'days')<=0;
+}

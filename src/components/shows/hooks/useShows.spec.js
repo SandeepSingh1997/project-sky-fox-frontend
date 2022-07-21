@@ -3,6 +3,8 @@ import useShows from "./useShows";
 import showsService from "../services/showsService";
 import moment from "moment";
 import {when} from "jest-when";
+import {AppContext} from "../../../context/app-context";
+import  React from 'react';
 
 jest.mock("../services/showsService", () => ({
     __esModule: true,
@@ -13,6 +15,13 @@ jest.mock("../services/showsService", () => ({
 
 describe("Basic logic", () => {
     let showDate;
+    const state={user:{"id": "1", "role": "Admin"}};
+    const dispatch=jest.fn();
+    const wrapper=({children})=>{
+       return (<AppContext.Provider value={{state,dispatch}}>
+            {children}
+        </AppContext.Provider>);
+    };
 
     beforeEach(() => {
         showDate = moment("2020-01-01", "YYYY-MM-DD");
@@ -20,7 +29,7 @@ describe("Basic logic", () => {
     });
 
     it("Should initialize the hook with empty shows and loading", () => {
-        const {result} = renderHook(() => useShows(showDate));
+        const {result} = renderHook(() => useShows(showDate),{wrapper});
 
         const {shows, showsLoading} = result.current;
 
@@ -29,7 +38,7 @@ describe("Basic logic", () => {
     });
 
     it("Should get shows and finish loading after mount", async () => {
-        const {result, waitForNextUpdate} = renderHook(() => useShows(showDate));
+        const {result, waitForNextUpdate} = renderHook(() => useShows(showDate),{wrapper});
 
         await waitForNextUpdate();
         const {shows, showsLoading} = result.current;
